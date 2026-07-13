@@ -32,10 +32,12 @@ def brand(footer=False):
 
 def header(active):
     links = "".join(
-        f'<a href="{slug}.html"{" class=\"active\"" if slug == active else ""}>{label}</a>'
+        '<a href="{}.html"{}>{}</a>'.format(
+            slug, ' class="active" aria-current="page"' if slug == active else "", label)
         for slug, label in NAV)
     mlinks = "".join(
-        f'<a href="{slug}.html"><span>{i+1:02d}</span>{label}</a>'
+        '<a href="{}.html"{}><span>{:02d}</span>{}</a>'.format(
+            slug, ' class="active" aria-current="page"' if slug == active else "", i + 1, label)
         for i, (slug, label) in enumerate([("index", "Home")] + list(NAV)))
     toggle = (f'<button class="theme-toggle" data-theme-toggle aria-label="Toggle colour theme">'
               f'{icon("moon","moon")}{icon("sun","sun")}</button>')

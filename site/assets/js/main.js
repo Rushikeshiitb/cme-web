@@ -32,16 +32,25 @@
     var menu = document.getElementById("mobileMenu");
     var mBtn = document.getElementById("menuBtn");
     if (mBtn && menu) {
-      mBtn.addEventListener("click", function () {
-        var open = menu.classList.toggle("open");
+      function setMenuOpen(open) {
+        menu.classList.toggle("open", open);
         document.body.style.overflow = open ? "hidden" : "";
         mBtn.setAttribute("aria-expanded", open ? "true" : "false");
+        mBtn.setAttribute("aria-label", open ? "Close menu" : "Open menu");
+      }
+      mBtn.addEventListener("click", function () {
+        setMenuOpen(!menu.classList.contains("open"));
       });
       menu.querySelectorAll("a").forEach(function (a) {
         a.addEventListener("click", function () {
-          menu.classList.remove("open");
-          document.body.style.overflow = "";
+          setMenuOpen(false);
         });
+      });
+      document.addEventListener("keydown", function (event) {
+        if (event.key === "Escape" && menu.classList.contains("open")) {
+          setMenuOpen(false);
+          mBtn.focus();
+        }
       });
     }
 

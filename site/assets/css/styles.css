@@ -184,6 +184,8 @@ section{position:relative}
 .mobile-menu.open{transform:translateY(0);opacity:1;pointer-events:auto}
 .mobile-menu a{font-family:var(--ff-display);font-size:1.8rem;padding:12px 0;border-bottom:1px solid var(--line-2);color:var(--ink);display:flex;justify-content:space-between;align-items:center}
 .mobile-menu a span{font-family:var(--ff-mono);font-size:.7rem;color:var(--ink-3)}
+.mobile-menu a.active{color:var(--accent-ink)}
+.mobile-menu a.active span{color:var(--accent)}
 
 /* ---------- Buttons ---------- */
 .btn{display:inline-flex;align-items:center;gap:.55em;padding:14px 26px;border-radius:99px;font-weight:600;font-size:.98rem;letter-spacing:-.01em;transition:.25s cubic-bezier(.4,0,.2,1);white-space:nowrap}
