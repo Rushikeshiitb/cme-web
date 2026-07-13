@@ -1,0 +1,16 @@
+# Python
+venv/
+__pycache__/
+*.pyc
+scripts/__pycache__/
+scripts/sitegen/__pycache__/
+
+# Intermediate/scratch asset processing (not needed to build the site)
+extracted-assets/
+
+# Raw source material — contains student roll numbers & personal data.
+# The site builds from the already-parsed scripts/data.json, so this is not required.
+imp-files/
+
+# OS
+.DS_Store

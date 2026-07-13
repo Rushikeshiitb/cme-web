@@ -1,0 +1,848 @@
+[
+  {
+    "name": "Abhay Chandra",
+    "batch": "2023",
+    "email": "23b0313@iitb.ac.in",
+    "seminars": [
+      {
+        "term": "Autumn '24",
+        "sem": "Sem 3",
+        "topic": "Scientific Machine Learning and Julia: History, Applications, Significance",
+        "guide": ""
+      },
+      {
+        "term": "Spring '25",
+        "sem": "Sem 4",
+        "topic": "Sarcasm Detection",
+        "guide": "Sharayu M."
+      },
+      {
+        "term": "Autumn '25",
+        "sem": "Sem 5",
+        "topic": "Federated Machine Learning",
+        "guide": "Sharayu M."
+      },
+      {
+        "term": "Spring '26",
+        "sem": "Sem 6",
+        "topic": "AI Image Detection: Techniques and the Evolution of Image Generation",
+        "guide": "Sharayu M."
+      }
+    ],
+    "featured": {
+      "term": "Spring '26",
+      "sem": "Sem 6",
+      "topic": "AI Image Detection: Techniques and the Evolution of Image Generation",
+      "guide": "Sharayu M."
+    },
+    "topic_count": 4
+  },
+  {
+    "name": "Chaitanya Jayant Deshkar",
+    "batch": "2023",
+    "email": "23b2712@iitb.ac.in",
+    "seminars": [
+      {
+        "term": "Autumn '24",
+        "sem": "Sem 3",
+        "topic": "Literature Review on Sentiment Analysis",
+        "guide": ""
+      },
+      {
+        "term": "Spring '25",
+        "sem": "Sem 4",
+        "topic": "Explanable AI",
+        "guide": "Amit S."
+      },
+      {
+        "term": "Autumn '25",
+        "sem": "Sem 5",
+        "topic": "Literature Review on KANs",
+        "guide": "Sharayu M."
+      },
+      {
+        "term": "Spring '26",
+        "sem": "Sem 6",
+        "topic": "Interpretability",
+        "guide": "Arjun Bhagoji"
+      }
+    ],
+    "featured": {
+      "term": "Spring '26",
+      "sem": "Sem 6",
+      "topic": "Interpretability",
+      "guide": "Arjun Bhagoji"
+    },
+    "topic_count": 4
+  },
+  {
+    "name": "Divyanshu Gupta",
+    "batch": "2023",
+    "email": "23b0306@iitb.ac.in",
+    "seminars": [
+      {
+        "term": "Autumn '24",
+        "sem": "Sem 3",
+        "topic": "Robust EVMs",
+        "guide": ""
+      },
+      {
+        "term": "Spring '25",
+        "sem": "Sem 4",
+        "topic": "EVM",
+        "guide": "Supratik C."
+      },
+      {
+        "term": "Autumn '25",
+        "sem": "Sem 5",
+        "topic": "EVM",
+        "guide": "Supratik C."
+      },
+      {
+        "term": "Spring '26",
+        "sem": "Sem 6",
+        "topic": "Terraforming Planets",
+        "guide": "Deepak Singh"
+      }
+    ],
+    "featured": {
+      "term": "Spring '26",
+      "sem": "Sem 6",
+      "topic": "Terraforming Planets",
+      "guide": "Deepak Singh"
+    },
+    "topic_count": 4
+  },
+  {
+    "name": "Ekamnoor Singh Manes",
+    "batch": "2023",
+    "email": "23b0756@iitb.ac.in",
+    "seminars": [
+      {
+        "term": "Autumn '24",
+        "sem": "Sem 3",
+        "topic": "Agricultural Sustainability in Punjab: Issues and Challenges in Paddy and Wheat Cultivation",
+        "guide": ""
+      },
+      {
+        "term": "Spring '25",
+        "sem": "Sem 4",
+        "topic": "Exotic Option Pricing and Numerical Methods",
+        "guide": "Prita P."
+      },
+      {
+        "term": "Autumn '25",
+        "sem": "Sem 5",
+        "topic": "Optimization Models for analysing SDGs",
+        "guide": "Prita P."
+      },
+      {
+        "term": "Spring '26",
+        "sem": "Sem 6",
+        "topic": "Academic Integrity in age of AI",
+        "guide": "Prita Pant"
+      }
+    ],
+    "featured": {
+      "term": "Spring '26",
+      "sem": "Sem 6",
+      "topic": "Academic Integrity in age of AI",
+      "guide": "Prita Pant"
+    },
+    "topic_count": 4
+  },
+  {
+    "name": "Gaurav Kumar",
+    "batch": "2023",
+    "email": "23b2715@iitb.ac.in",
+    "seminars": [
+      {
+        "term": "Autumn '24",
+        "sem": "Sem 3",
+        "topic": "Effect of interest rate hikes on assest classes and overview of economics",
+        "guide": ""
+      },
+      {
+        "term": "Spring '25",
+        "sem": "Sem 4",
+        "topic": "Revolutionary idea of finance",
+        "guide": "Arindam C."
+      },
+      {
+        "term": "Autumn '25",
+        "sem": "Sem 5",
+        "topic": "Monte carlo simulation",
+        "guide": "Arindam C."
+      },
+      {
+        "term": "Spring '26",
+        "sem": "Sem 6",
+        "topic": "",
+        "guide": "Sharayu"
+      }
+    ],
+    "featured": {
+      "term": "Autumn '25",
+      "sem": "Sem 5",
+      "topic": "Monte carlo simulation",
+      "guide": "Arindam C."
+    },
+    "topic_count": 3
+  },
+  {
+    "name": "Manglam Kartik",
+    "batch": "2023",
+    "email": "23b4243@iitb.ac.in",
+    "seminars": [
+      {
+        "term": "Autumn '24",
+        "sem": "Sem 3",
+        "topic": "Option Pricing Models",
+        "guide": ""
+      },
+      {
+        "term": "Spring '25",
+        "sem": "Sem 4",
+        "topic": "Options Pricing models",
+        "guide": "Mithun M."
+      },
+      {
+        "term": "Autumn '25",
+        "sem": "Sem 5",
+        "topic": "Solution to Data scarcity for model training",
+        "guide": "Biplab B."
+      },
+      {
+        "term": "Spring '26",
+        "sem": "Sem 6",
+        "topic": "",
+        "guide": ""
+      }
+    ],
+    "featured": {
+      "term": "Autumn '25",
+      "sem": "Sem 5",
+      "topic": "Solution to Data scarcity for model training",
+      "guide": "Biplab B."
+    },
+    "topic_count": 3
+  },
+  {
+    "name": "Parth Malani",
+    "batch": "2023",
+    "email": "23b2702@iitb.ac.in",
+    "seminars": [
+      {
+        "term": "Autumn '24",
+        "sem": "Sem 3",
+        "topic": "What can be done in agricultural sector to improve it",
+        "guide": ""
+      },
+      {
+        "term": "Spring '25",
+        "sem": "Sem 4",
+        "topic": "Behavioral finance",
+        "guide": "Rohit M."
+      },
+      {
+        "term": "Autumn '25",
+        "sem": "Sem 5",
+        "topic": "energy economics",
+        "guide": "Rohit M."
+      },
+      {
+        "term": "Spring '26",
+        "sem": "Sem 6",
+        "topic": "New energy technologies",
+        "guide": "NA"
+      }
+    ],
+    "featured": {
+      "term": "Spring '26",
+      "sem": "Sem 6",
+      "topic": "New energy technologies",
+      "guide": "NA"
+    },
+    "topic_count": 4
+  },
+  {
+    "name": "Priyansh Jhanwar",
+    "batch": "2023",
+    "email": "23b2730@iitb.ac.in",
+    "seminars": [
+      {
+        "term": "Autumn '24",
+        "sem": "Sem 3",
+        "topic": "Grocery Retail in India: Operational Shifts and Consumer Impact in the Age of Modern Retail",
+        "guide": ""
+      },
+      {
+        "term": "Spring '25",
+        "sem": "Sem 4",
+        "topic": "Bio-Inspired Locomotion control",
+        "guide": "Abhishek G."
+      },
+      {
+        "term": "Autumn '25",
+        "sem": "Sem 5",
+        "topic": "Game-Theoretic Approaches to Multi-Agent Reinforcement Learning",
+        "guide": "JayaKrishnan N"
+      },
+      {
+        "term": "Spring '26",
+        "sem": "Sem 6",
+        "topic": "RL techniques in VLA models",
+        "guide": "Arpita sinha"
+      }
+    ],
+    "featured": {
+      "term": "Spring '26",
+      "sem": "Sem 6",
+      "topic": "RL techniques in VLA models",
+      "guide": "Arpita sinha"
+    },
+    "topic_count": 4
+  },
+  {
+    "name": "Rushikesh Shinde",
+    "batch": "2023",
+    "email": "23b3316@iitb.ac.in",
+    "seminars": [
+      {
+        "term": "Autumn '24",
+        "sem": "Sem 3",
+        "topic": "Computational aspect of Hindustani Classical Music and Raga Recognition",
+        "guide": ""
+      },
+      {
+        "term": "Spring '25",
+        "sem": "Sem 4",
+        "topic": "Indian Music Generation",
+        "guide": "Girish D."
+      },
+      {
+        "term": "Autumn '25",
+        "sem": "Sem 5",
+        "topic": "RL",
+        "guide": "Sharayu M."
+      },
+      {
+        "term": "Spring '26",
+        "sem": "Sem 6",
+        "topic": "Online Learning",
+        "guide": "Sharayu M."
+      }
+    ],
+    "featured": {
+      "term": "Spring '26",
+      "sem": "Sem 6",
+      "topic": "Online Learning",
+      "guide": "Sharayu M."
+    },
+    "topic_count": 4
+  },
+  {
+    "name": "Sanghvi Naigam Aadish",
+    "batch": "2023",
+    "email": "23b0667@iitb.ac.in",
+    "seminars": [
+      {
+        "term": "Autumn '24",
+        "sem": "Sem 3",
+        "topic": "Overview of History of Telecommunication",
+        "guide": ""
+      },
+      {
+        "term": "Spring '25",
+        "sem": "Sem 4",
+        "topic": "Computational Fluid Dynamics",
+        "guide": "Shiva G."
+      },
+      {
+        "term": "Autumn '25",
+        "sem": "Sem 5",
+        "topic": "THz Communication",
+        "guide": "Shiva G."
+      },
+      {
+        "term": "Spring '26",
+        "sem": "Sem 6",
+        "topic": "",
+        "guide": ""
+      }
+    ],
+    "featured": {
+      "term": "Autumn '25",
+      "sem": "Sem 5",
+      "topic": "THz Communication",
+      "guide": "Shiva G."
+    },
+    "topic_count": 3
+  },
+  {
+    "name": "Sreyash Gupta",
+    "batch": "2023",
+    "email": "23b2198@iitb.ac.in",
+    "seminars": [
+      {
+        "term": "Autumn '24",
+        "sem": "Sem 3",
+        "topic": "Urban supply chain for grocery retail",
+        "guide": ""
+      },
+      {
+        "term": "Spring '25",
+        "sem": "Sem 4",
+        "topic": "Urban governance for sustainability",
+        "guide": "Anush K."
+      },
+      {
+        "term": "Autumn '25",
+        "sem": "Sem 5",
+        "topic": "How Early-Stage Startups Build Their Initial Teams",
+        "guide": "Ramesh Kuruva"
+      },
+      {
+        "term": "Spring '26",
+        "sem": "Sem 6",
+        "topic": "Mergers and Aquisitions",
+        "guide": "Ramesh Kuruva"
+      }
+    ],
+    "featured": {
+      "term": "Spring '26",
+      "sem": "Sem 6",
+      "topic": "Mergers and Aquisitions",
+      "guide": "Ramesh Kuruva"
+    },
+    "topic_count": 4
+  },
+  {
+    "name": "Yuvraj Biren Parekh",
+    "batch": "2023",
+    "email": "23b2708@iitb.ac.in",
+    "seminars": [
+      {
+        "term": "Autumn '24",
+        "sem": "Sem 3",
+        "topic": "Study of Recommendation Engines using Graph Theory",
+        "guide": ""
+      },
+      {
+        "term": "Spring '25",
+        "sem": "Sem 4",
+        "topic": "Physics Informed Neural Networks",
+        "guide": "Shiva G."
+      },
+      {
+        "term": "Autumn '25",
+        "sem": "Sem 5",
+        "topic": "New Approaches to the Mondrian Art Problem",
+        "guide": "Avinash B."
+      },
+      {
+        "term": "Spring '26",
+        "sem": "Sem 6",
+        "topic": "Perception Techniques for Autonomous Vehicles",
+        "guide": "Archak Mittal"
+      }
+    ],
+    "featured": {
+      "term": "Spring '26",
+      "sem": "Sem 6",
+      "topic": "Perception Techniques for Autonomous Vehicles",
+      "guide": "Archak Mittal"
+    },
+    "topic_count": 4
+  },
+  {
+    "name": "Adarsh Kumar Singh",
+    "batch": "2024",
+    "email": "24b0654@iitb.ac.in",
+    "seminars": [
+      {
+        "term": "Autumn '25",
+        "sem": "Sem 3",
+        "topic": "World Models in AI",
+        "guide": "sharayu.moharir@gmail.com"
+      },
+      {
+        "term": "Spring '26",
+        "sem": "Sem 4",
+        "topic": "Artificial Intelligence in Healthcare: Applications, Challenges and the Future of AI-Assisted Medicine",
+        "guide": "Sharayu"
+      }
+    ],
+    "featured": {
+      "term": "Spring '26",
+      "sem": "Sem 4",
+      "topic": "Artificial Intelligence in Healthcare: Applications, Challenges and the Future of AI-Assisted Medicine",
+      "guide": "Sharayu"
+    },
+    "topic_count": 2
+  },
+  {
+    "name": "Akhil Kadem",
+    "batch": "2024",
+    "email": "24b0692@iitb.ac.in",
+    "seminars": [
+      {
+        "term": "Autumn '25",
+        "sem": "Sem 3",
+        "topic": "Entrepreneurial Evolution in India: A Comparative Analysis of the 1990s SME Boom and the 2010s Startup Surge",
+        "guide": "Raj Hirani"
+      },
+      {
+        "term": "Spring '26",
+        "sem": "Sem 4",
+        "topic": "",
+        "guide": ""
+      }
+    ],
+    "featured": {
+      "term": "Autumn '25",
+      "sem": "Sem 3",
+      "topic": "Entrepreneurial Evolution in India: A Comparative Analysis of the 1990s SME Boom and the 2010s Startup Surge",
+      "guide": "Raj Hirani"
+    },
+    "topic_count": 1
+  },
+  {
+    "name": "Ansh Savla",
+    "batch": "2024",
+    "email": "24b0746@iitb.ac.in",
+    "seminars": [
+      {
+        "term": "Autumn '25",
+        "sem": "Sem 3",
+        "topic": "The Agentic AI Era : Paradigms, Architectures and Applications",
+        "guide": "Shiva G."
+      },
+      {
+        "term": "Spring '26",
+        "sem": "Sem 4",
+        "topic": "A Comprehensive Review of LLM Inference Efficiency",
+        "guide": "Shiva"
+      }
+    ],
+    "featured": {
+      "term": "Spring '26",
+      "sem": "Sem 4",
+      "topic": "A Comprehensive Review of LLM Inference Efficiency",
+      "guide": "Shiva"
+    },
+    "topic_count": 2
+  },
+  {
+    "name": "Arihant Baid",
+    "batch": "2024",
+    "email": "24b0656@iitb.ac.in",
+    "seminars": [
+      {
+        "term": "Autumn '25",
+        "sem": "Sem 3",
+        "topic": "GDP Forecasting Techniques",
+        "guide": "Narayan Rangaraj"
+      },
+      {
+        "term": "Spring '26",
+        "sem": "Sem 4",
+        "topic": "Online Portfolio Selection",
+        "guide": "Narayan Rangaraj"
+      }
+    ],
+    "featured": {
+      "term": "Spring '26",
+      "sem": "Sem 4",
+      "topic": "Online Portfolio Selection",
+      "guide": "Narayan Rangaraj"
+    },
+    "topic_count": 2
+  },
+  {
+    "name": "Arnav Vedanti",
+    "batch": "2024",
+    "email": "24b3305@iitb.ac.in",
+    "seminars": [
+      {
+        "term": "Autumn '25",
+        "sem": "Sem 3",
+        "topic": "liberisation of indian economy,1991",
+        "guide": "Prita P."
+      },
+      {
+        "term": "Spring '26",
+        "sem": "Sem 4",
+        "topic": "Understanding Financial Literacy in India through Behavioral Economics",
+        "guide": "Rohan Chinchwadkar"
+      }
+    ],
+    "featured": {
+      "term": "Spring '26",
+      "sem": "Sem 4",
+      "topic": "Understanding Financial Literacy in India through Behavioral Economics",
+      "guide": "Rohan Chinchwadkar"
+    },
+    "topic_count": 2
+  },
+  {
+    "name": "Harshit Agarwal",
+    "batch": "2024",
+    "email": "24b2734@iitb.ac.in",
+    "seminars": [
+      {
+        "term": "Autumn '25",
+        "sem": "Sem 3",
+        "topic": "Traditional ML Models and Their Modern Extensions",
+        "guide": "Sharayu M."
+      },
+      {
+        "term": "Spring '26",
+        "sem": "Sem 4",
+        "topic": "Reinforcement Learning: Theory, Algorithms, and Applications",
+        "guide": "Sharayu M."
+      }
+    ],
+    "featured": {
+      "term": "Spring '26",
+      "sem": "Sem 4",
+      "topic": "Reinforcement Learning: Theory, Algorithms, and Applications",
+      "guide": "Sharayu M."
+    },
+    "topic_count": 2
+  },
+  {
+    "name": "Jennifer Esbel Mary",
+    "batch": "2024",
+    "email": "jennifer.esbel.mary@iitb.ac.in",
+    "seminars": [
+      {
+        "term": "Autumn '25",
+        "sem": "Sem 3",
+        "topic": "Sleep Neuroscience - How AI can become more efficient following the human body’s regulation mechanism? How humans are neglecting this most efficient memory consolidation mechanism.",
+        "guide": "Azizuddin K."
+      },
+      {
+        "term": "Spring '26",
+        "sem": "Sem 4",
+        "topic": "Archaeology and Other Sciences: A Bidirectional Exchange of Methods and Knowledge",
+        "guide": "Rachel Varghese"
+      }
+    ],
+    "featured": {
+      "term": "Spring '26",
+      "sem": "Sem 4",
+      "topic": "Archaeology and Other Sciences: A Bidirectional Exchange of Methods and Knowledge",
+      "guide": "Rachel Varghese"
+    },
+    "topic_count": 2
+  },
+  {
+    "name": "Kabir Dodai",
+    "batch": "2024",
+    "email": "24b2432@iitb.ac.in",
+    "seminars": [
+      {
+        "term": "Autumn '25",
+        "sem": "Sem 3",
+        "topic": "Mergers and Acquisitions in India",
+        "guide": "Sharayu M."
+      },
+      {
+        "term": "Spring '26",
+        "sem": "Sem 4",
+        "topic": "From Potential to Price: How Venture Capitalists Value Early-Stage Startups",
+        "guide": "Rohan Chinchwadkar"
+      }
+    ],
+    "featured": {
+      "term": "Spring '26",
+      "sem": "Sem 4",
+      "topic": "From Potential to Price: How Venture Capitalists Value Early-Stage Startups",
+      "guide": "Rohan Chinchwadkar"
+    },
+    "topic_count": 2
+  },
+  {
+    "name": "Keshav Kumar",
+    "batch": "2024",
+    "email": "24b0354@iitb.ac.in",
+    "seminars": [
+      {
+        "term": "Autumn '25",
+        "sem": "Sem 3",
+        "topic": "AI Prompt Injection",
+        "guide": "Shiva G."
+      },
+      {
+        "term": "Spring '26",
+        "sem": "Sem 4",
+        "topic": "Phone system and security",
+        "guide": "Jayakrishnan Nair"
+      }
+    ],
+    "featured": {
+      "term": "Spring '26",
+      "sem": "Sem 4",
+      "topic": "Phone system and security",
+      "guide": "Jayakrishnan Nair"
+    },
+    "topic_count": 2
+  },
+  {
+    "name": "Kusum Rathore",
+    "batch": "2024",
+    "email": "24b2723@iitb.ac.in",
+    "seminars": [
+      {
+        "term": "Autumn '25",
+        "sem": "Sem 3",
+        "topic": "Role of Cinema in Cultural Representation",
+        "guide": "Sudesh"
+      },
+      {
+        "term": "Spring '26",
+        "sem": "Sem 4",
+        "topic": "",
+        "guide": ""
+      }
+    ],
+    "featured": {
+      "term": "Autumn '25",
+      "sem": "Sem 3",
+      "topic": "Role of Cinema in Cultural Representation",
+      "guide": "Sudesh"
+    },
+    "topic_count": 1
+  },
+  {
+    "name": "Nidhish Sahni",
+    "batch": "2024",
+    "email": "24b2728@iitb.ac.in",
+    "seminars": [
+      {
+        "term": "Autumn '25",
+        "sem": "Sem 3",
+        "topic": "Hilbert's attempt to axiomatize the whole of Maths and how it failed (courtesy Goedel), and what implications it has had since then",
+        "guide": "Supratik C."
+      },
+      {
+        "term": "Spring '26",
+        "sem": "Sem 4",
+        "topic": "Quantum entanglement and its applications",
+        "guide": "Umasankar"
+      }
+    ],
+    "featured": {
+      "term": "Spring '26",
+      "sem": "Sem 4",
+      "topic": "Quantum entanglement and its applications",
+      "guide": "Umasankar"
+    },
+    "topic_count": 2
+  },
+  {
+    "name": "Parakh Sharma",
+    "batch": "2024",
+    "email": "24b0729@iitb.ac.in",
+    "seminars": [
+      {
+        "term": "Autumn '25",
+        "sem": "Sem 3",
+        "topic": "Markov Chains and Stochastic Processes : A Comprehensive Analysis",
+        "guide": "Nikhil K."
+      },
+      {
+        "term": "Spring '26",
+        "sem": "Sem 4",
+        "topic": "RL in Algorithmic trading",
+        "guide": "Jayakrishnan Nair"
+      }
+    ],
+    "featured": {
+      "term": "Spring '26",
+      "sem": "Sem 4",
+      "topic": "RL in Algorithmic trading",
+      "guide": "Jayakrishnan Nair"
+    },
+    "topic_count": 2
+  },
+  {
+    "name": "Punit Ranawat",
+    "batch": "2024",
+    "email": "24b2715@iitb.ac.in",
+    "seminars": [
+      {
+        "term": "Autumn '25",
+        "sem": "Sem 3",
+        "topic": "The Protein Folding Problem",
+        "guide": "Swati P."
+      },
+      {
+        "term": "Spring '26",
+        "sem": "Sem 4",
+        "topic": "Quantum entanglement and Bell's Inequalities",
+        "guide": "Umasankar"
+      }
+    ],
+    "featured": {
+      "term": "Spring '26",
+      "sem": "Sem 4",
+      "topic": "Quantum entanglement and Bell's Inequalities",
+      "guide": "Umasankar"
+    },
+    "topic_count": 2
+  },
+  {
+    "name": "Ram Jyothy",
+    "batch": "2024",
+    "email": "24b0712@iitb.ac.in",
+    "seminars": [
+      {
+        "term": "Autumn '25",
+        "sem": "Sem 3",
+        "topic": "Neuromorphic Computing : Spiking Neural Networks",
+        "guide": "Veeresh D."
+      },
+      {
+        "term": "Spring '26",
+        "sem": "Sem 4",
+        "topic": "The power of two choices in randomized load balancing",
+        "guide": "Sharayu"
+      }
+    ],
+    "featured": {
+      "term": "Spring '26",
+      "sem": "Sem 4",
+      "topic": "The power of two choices in randomized load balancing",
+      "guide": "Sharayu"
+    },
+    "topic_count": 2
+  },
+  {
+    "name": "Sarthak Saran",
+    "batch": "2024",
+    "email": "24b2736@iitb.ac.in",
+    "seminars": [
+      {
+        "term": "Autumn '25",
+        "sem": "Sem 3",
+        "topic": "Sleep Paralysis",
+        "guide": "Narayan"
+      },
+      {
+        "term": "Spring '26",
+        "sem": "Sem 4",
+        "topic": "Consumer Psychology",
+        "guide": "Arti D. Kalro"
+      }
+    ],
+    "featured": {
+      "term": "Spring '26",
+      "sem": "Sem 4",
+      "topic": "Consumer Psychology",
+      "guide": "Arti D. Kalro"
+    },
+    "topic_count": 2
+  }
+]
