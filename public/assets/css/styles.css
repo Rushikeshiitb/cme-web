@@ -287,6 +287,87 @@ code{font-family:var(--ff-mono);font-size:.85em}
 .hero .lead{max-width:60ch;margin-top:1.1rem}
 .hero-cta{display:flex;flex-wrap:wrap;gap:.7rem;margin-top:2rem}
 
+/* hero split: copy on the left, tumbling cube on the right */
+.hero-layout{display:grid;grid-template-columns:1fr;gap:clamp(30px,5vw,54px);align-items:center}
+.hero-visual{display:flex;justify-content:center}
+@media(min-width:1000px){
+  .hero-layout{grid-template-columns:minmax(0,1fr) auto}
+  .hero-visual{justify-content:flex-end}
+}
+
+/* ---------- decorative 3×3 cube (home hero) ----------
+   Pure CSS 3D: two nested spinners on coprime periods so the tumble never
+   settles into an obvious loop. Colours are painted by the inline script in
+   RubiksCube.astro — a fresh scramble on every load. It never solves. */
+.rc-stage{
+  --rc-u:clamp(30px,3.3vw,45px);              /* cubie edge */
+  --rc-gap:calc(var(--rc-u)*.055);
+  --rc-step:calc(var(--rc-u) + var(--rc-gap));
+  --rc-half:calc(var(--rc-u)/2);
+  --rc-plastic:#1b1c20;
+  position:relative;flex:none;pointer-events:none;
+  /* square box sized to the cube's tumble envelope, so rotation never
+     clips or nudges the surrounding layout */
+  width:calc(var(--rc-step)*6.1);height:calc(var(--rc-step)*6.1);
+  perspective:1500px;perspective-origin:50% 46%;
+  background:radial-gradient(circle at 50% 47%,color-mix(in srgb,var(--accent) 11%,transparent),transparent 62%);
+}
+.rc-orbit,.rc-tumble,.rc-cube{position:absolute;inset:0;transform-style:preserve-3d}
+.rc-orbit{animation:rc-orbit 19s linear infinite;will-change:transform}
+.rc-tumble{animation:rc-tumble 27s linear infinite;will-change:transform}
+.rc-cube{transform:rotateZ(-9deg)}
+@keyframes rc-orbit{to{transform:rotateY(360deg)}}
+@keyframes rc-tumble{to{transform:rotateX(360deg)}}
+
+/* NB: centring is done with translate(-50%,-50%), not a negative margin.
+   The CSS minifier drops the space in `margin:calc(…)0 0 calc(…)`, which makes
+   the shorthand invalid and silently throws the whole declaration away. */
+.rc-cubie{
+  position:absolute;top:50%;left:50%;
+  width:var(--rc-u);height:var(--rc-u);
+  transform-style:preserve-3d;
+  transform:translate(-50%,-50%) translate3d(calc(var(--cx)*var(--rc-step)),calc(var(--cy)*var(--rc-step)),calc(var(--cz)*var(--rc-step)));
+}
+/* solid plastic body just under the sticker plane — without it, gaps between
+   cubies let the page background show through at grazing angles */
+.rc-core{
+  --rc-t:calc(var(--rc-u)*1.5);
+  position:absolute;top:50%;left:50%;
+  width:calc(var(--rc-u)*3);height:calc(var(--rc-u)*3);
+  transform-style:preserve-3d;
+  transform:translate(-50%,-50%);
+}
+/* a face is the cubie's plastic shell; the sticker is inset on top of it */
+/* square, not rounded: a rounded plastic face would notch the cube's outer
+   edges and let the background through again. The sticker carries the radius. */
+.rc-f{
+  position:absolute;inset:0;
+  background:var(--rc-plastic);
+  backface-visibility:hidden;
+}
+.rc-f[data-sticker]::after{
+  content:"";position:absolute;inset:7%;border-radius:15%;
+  /* --rc-sticker is set per-face by the inline script; grey is the no-JS fallback */
+  background:var(--rc-sticker,#3b3d43);
+  box-shadow:inset 0 0 0 1px rgba(0,0,0,.18),inset 0 2px 7px rgba(255,255,255,.26);
+}
+/* --rc-t is the half-depth to push each face out by: cubie half-edge by
+   default, overridden to the core's half-edge on .rc-core */
+.rc-f-f {transform:translateZ(var(--rc-t,var(--rc-half)))}
+.rc-f-b {transform:rotateY(180deg) translateZ(var(--rc-t,var(--rc-half)))}
+.rc-f-r {transform:rotateY(90deg)  translateZ(var(--rc-t,var(--rc-half)))}
+.rc-f-l {transform:rotateY(-90deg) translateZ(var(--rc-t,var(--rc-half)))}
+.rc-f-u {transform:rotateX(90deg)  translateZ(var(--rc-t,var(--rc-half)))}
+.rc-f-dn{transform:rotateX(-90deg) translateZ(var(--rc-t,var(--rc-half)))}
+
+/* interior heroes are shorter, so the cube runs a touch smaller there */
+.page-hero .rc-stage{--rc-u:clamp(28px,2.9vw,40px)}
+@media(max-width:999px){.rc-stage,.page-hero .rc-stage{--rc-u:clamp(26px,6.6vw,40px)}}
+@media(prefers-reduced-motion:reduce){
+  .rc-orbit{animation:none;transform:rotateY(-34deg)}
+  .rc-tumble{animation:none;transform:rotateX(-20deg)}
+}
+
 /* interior page hero (smaller) */
 .page-hero{position:relative;border-bottom:1px solid var(--line);overflow:hidden;background:var(--bg)}
 .page-hero::before{content:"";position:absolute;top:-40%;right:-10%;width:50%;height:120%;z-index:0;pointer-events:none;

@@ -5,6 +5,7 @@ import Eyebrow from '~/components/cme/Eyebrow.astro';
 import SectionHead from '~/components/cme/SectionHead.astro';
 import StatStrip from '~/components/cme/StatStrip.astro';
 import LogoWall from '~/components/cme/LogoWall.astro';
+import RubiksCube from '~/components/cme/RubiksCube.astro';
 import { href } from '~/lib/nav';
 import { asset } from '~/lib/assets';
 import { initials } from '~/lib/text';
@@ -15,13 +16,18 @@ const desc = 'The Centre for Multidisciplinary Education (CME) at IIT Bombay let
 <Base slug="index" title="Home" desc={desc}>
 <section class="hero"><div class="hero-grid"></div>
   <div class="container">
-    <div class="reveal"><span class="hero-badge"><Icon name="sparkle" stroke={1.6} /> IIT Bombay</span></div>
-    <h1 class="display reveal" data-d="1" style="margin-top:26px">Centre for<br /><span class="grad-text serif-em">Multidisciplinary</span> Education</h1>
-    <p class="hero-tagline reveal" data-d="2">Design your own degree.</p>
-    <p class="lead reveal" data-d="3">The Centre for Multidisciplinary Education at IIT Bombay lets you choose your own coursework across <strong>every department</strong> — and graduate with a Bachelor of Science built entirely around your curiosity.</p>
-    <div class="hero-cta reveal" data-d="3">
-      <a class="btn btn-primary btn-lg" href={href('about')}>What is CME? <Icon name="arrow" /></a>
-      <a class="btn btn-ghost btn-lg" href={href('curriculum')}>See the structure <Icon name="layers" /></a>
+    <div class="hero-layout">
+      <div class="hero-copy">
+        <div class="reveal"><span class="hero-badge"><Icon name="sparkle" stroke={1.6} /> IIT Bombay</span></div>
+        <h1 class="display reveal" data-d="1" style="margin-top:26px">Centre for<br /><span class="grad-text serif-em">Multidisciplinary</span> Education</h1>
+        <p class="hero-tagline reveal" data-d="2">Design your own degree.</p>
+        <p class="lead reveal" data-d="3">The Centre for Multidisciplinary Education at IIT Bombay lets you choose your own coursework across <strong>every department</strong> — and graduate with a Bachelor of Science built entirely around your curiosity.</p>
+        <div class="hero-cta reveal" data-d="3">
+          <a class="btn btn-primary btn-lg" href={href('about')}>What is CME? <Icon name="arrow" /></a>
+          <a class="btn btn-ghost btn-lg" href={href('curriculum')}>See the structure <Icon name="layers" /></a>
+        </div>
+      </div>
+      <div class="hero-visual reveal" data-d="4"><RubiksCube /></div>
     </div>
     <div style="margin-top:clamp(48px,7vw,88px)"><StatStrip /></div>
   </div>
