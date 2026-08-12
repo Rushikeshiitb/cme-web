@@ -1,0 +1,6 @@
+---
+import { STATS } from '~/data/site';
+---
+<div class="stats">{STATS.map((s) => (
+  <div class="stat reveal"><div class="num">{s.num}{s.suf && <span class="suf">{s.suf}</span>}</div><div class="lbl">{s.lbl}</div></div>
+))}</div>

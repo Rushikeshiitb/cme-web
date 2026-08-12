@@ -1,0 +1,23 @@
+---
+import type { Company } from '~/data/site';
+import { asset } from '~/lib/assets';
+
+interface Props { companies: Company[]; ranked?: boolean; }
+const { companies, ranked = false } = Astro.props;
+const pad = (n: number) => String(n).padStart(2, '0');
+
+function wordmark(name: string) {
+  const words = name.split(' ');
+  const first = words[0];
+  const rest = words.length > 1 ? ' ' + words.slice(1).join(' ') : '';
+  return { first, rest };
+}
+---
+<div class="logo-wall">{companies.map((c, i) => (
+  <div class="logo-cell reveal">
+    {ranked && <span class="rank">{pad(i + 1)}</span>}
+    {c.logo
+      ? <img src={asset(`assets/img/logos/${c.logo}`)} alt={`${c.n} logo`} loading="lazy" />
+      : <span class="wordmark"><span class="accent">{wordmark(c.n).first}</span>{wordmark(c.n).rest}</span>}
+  </div>
+))}</div>

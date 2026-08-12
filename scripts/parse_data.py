@@ -3,7 +3,8 @@
 import openpyxl, json, re, os, collections
 
 XLSX = "imp-files/Seminar Details.xlsx"
-OUT = "scripts/data.json"
+# Student dataset consumed by the Astro site (src/data/site.ts imports it).
+OUT = "src/data/students.json"
 
 # sheet -> (batch, term label, semester)
 SHEETS = {

@@ -1,0 +1,99 @@
+---
+// CME — Centre for Multidisciplinary Education, IIT Bombay
+// Design tokens for the AstroWind theme: warm brown → gold accent, editorial
+// Fraunces headings, Inter body, Space Grotesk brand, JetBrains Mono labels.
+// Fonts are self-hosted (public/assets/fonts) — no external calls in the browser.
+---
+
+<style is:inline>
+  @font-face {
+    font-family: 'Inter';
+    src: url('/assets/fonts/inter-var.woff2') format('woff2');
+    font-weight: 100 900;
+    font-display: swap;
+    font-style: normal;
+  }
+  @font-face {
+    font-family: 'Fraunces';
+    src: url('/assets/fonts/fraunces-var.woff2') format('woff2');
+    font-weight: 300 900;
+    font-display: swap;
+    font-style: normal;
+    font-optical-sizing: auto;
+  }
+  @font-face {
+    font-family: 'Fraunces';
+    src: url('/assets/fonts/fraunces-italic-var.woff2') format('woff2');
+    font-weight: 300 900;
+    font-display: swap;
+    font-style: italic;
+    font-optical-sizing: auto;
+  }
+  @font-face {
+    font-family: 'Space Grotesk';
+    src: url('/assets/fonts/space-grotesk-var.woff2') format('woff2');
+    font-weight: 300 700;
+    font-display: swap;
+    font-style: normal;
+  }
+  @font-face {
+    font-family: 'JetBrains Mono';
+    src: url('/assets/fonts/jetbrains-mono.woff2') format('woff2');
+    font-weight: 400 700;
+    font-display: swap;
+    font-style: normal;
+  }
+
+  :root {
+    --aw-font-sans: 'Inter';
+    --aw-font-serif: 'Fraunces';
+    --aw-font-heading: 'Fraunces';
+
+    /* brand fonts for specific elements */
+    --cme-font-brand: 'Space Grotesk';
+    --cme-font-mono: 'JetBrains Mono';
+
+    /* warm brown → gold accent */
+    --aw-color-primary: rgb(122 74 36); /* #7a4a24 */
+    --aw-color-secondary: rgb(115 62 36); /* #733e24 */
+    --aw-color-accent: rgb(154 108 47); /* #9a6c2f */
+
+    --aw-color-text-heading: rgb(15 17 21); /* #0f1115 */
+    --aw-color-text-default: rgb(15 17 21);
+    --aw-color-text-muted: rgb(15 17 21 / 66%);
+    --aw-color-bg-page: rgb(255 255 255);
+
+    --aw-color-bg-page-dark: rgb(12 12 14); /* #0c0c0e */
+
+    ::selection {
+      background-color: rgb(199 154 84 / 35%);
+    }
+  }
+
+  .dark {
+    --aw-font-sans: 'Inter';
+    --aw-font-serif: 'Fraunces';
+    --aw-font-heading: 'Fraunces';
+
+    /* gold accent in the dark theme */
+    --aw-color-primary: rgb(208 168 102); /* #d0a866 */
+    --aw-color-secondary: rgb(199 154 84); /* #c79a54 */
+    --aw-color-accent: rgb(224 189 125); /* #e0bd7d */
+
+    --aw-color-text-heading: rgb(244 245 247); /* #f4f5f7 */
+    --aw-color-text-default: rgb(244 245 247);
+    --aw-color-text-muted: rgb(244 245 247 / 66%);
+    --aw-color-bg-page: rgb(12 12 14); /* #0c0c0e */
+
+    ::selection {
+      background-color: rgb(208 168 102 / 30%);
+    }
+  }
+
+  /* Editorial headline tracking to match the CME identity */
+  h1,
+  h2,
+  h3 {
+    letter-spacing: -0.02em;
+  }
+</style>

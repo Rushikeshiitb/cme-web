@@ -1,0 +1,76 @@
+---
+import Base from '~/layouts/Base.astro';
+import Icon from '~/components/cme/Icon.astro';
+import Eyebrow from '~/components/cme/Eyebrow.astro';
+import SectionHead from '~/components/cme/SectionHead.astro';
+import PageHero from '~/components/cme/PageHero.astro';
+import { FOUNDATION, CURRIC_HEAD, CURRIC_ROWS, CURRIC_TOTALS, CREDIT_RULES } from '~/data/site';
+import type { Cell } from '~/data/site';
+
+const desc = 'The CME curriculum at IIT Bombay: six foundation baskets, a semester-by-semester credit map, research seminars and projects, and the rules that keep it rigorous.';
+const PILL: Record<string, string> = { found: 'pill-found', elec: 'pill-elec', sem: 'pill-sem', proj: 'pill-proj', es: 'pill-found' };
+---
+<Base slug="curriculum" title="Curriculum" desc={desc}>
+<PageHero
+  eb="Curriculum & Structure"
+  title={'A curriculum with <span class="grad-text serif-em">no two alike.</span>'}
+  lead="Six foundation areas, a spine of electives, and research seminars that grow into projects — 260 credits, entirely your own."
+  crumb="Curriculum"
+/>
+
+<section class="section"><div class="container">
+  <SectionHead eb="Foundation courses" title="Start wide: six baskets, six credits each." sub="Every CME student is exposed to all six foundation areas before specialising — and none of these courses need prerequisites, so you can genuinely explore." />
+  <div class="grid g-3">{FOUNDATION.map((b, i) => (
+    <div class="card disc reveal" data-d={(i % 3) + 1} style={`--c:var(${b.hue})`}><div class="card-ic"><Icon name={b.ic} /></div><span class="credits">6 CREDITS · ONE BASKET</span><h3 style="margin-top:8px">{b.name}</h3><p>{b.blurb}</p><ul>{b.courses.map(([code, nm]) => <li><code>{code}</code><span>{nm}</span></li>)}</ul></div>
+  ))}</div>
+</div></section>
+
+<section class="section" style="background:var(--surface-2)"><div class="container">
+  <SectionHead eb="The semester map" title="Semesters 3 to 8, credit by credit." sub="Foundation courses front-load your exploration; electives and research fill the later years. First year (64 credits) + this map = 260 credits total." />
+  <div class="curric-wrap reveal">
+    <table class="curric">
+      <thead><tr>{CURRIC_HEAD.map((h) => <th>{h}</th>)}</tr></thead>
+      <tbody>{CURRIC_ROWS.map((r) => (
+        <tr><td>{r[0] as string}</td>{(r.slice(1) as Cell[]).map(([label, cr, typ]) => (
+          typ === 'none'
+            ? <td style="opacity:.35">—</td>
+            : <td><span class="cell"><span class={`pill ${PILL[typ] ?? 'pill-elec'}`}>{label}</span><span class="cr">{cr}</span></span></td>
+        ))}</tr>
+      ))}
+        <tr style="border-top:2px solid var(--line)"><td>Total</td>{CURRIC_TOTALS.slice(1).map((t) => <td style="font-family:var(--ff-mono);font-weight:600;color:var(--accent)">{t}</td>)}</tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="badge-row" style="margin-top:22px">
+    <span class="mini-badge"><span class="pill pill-found" style="padding:2px 8px">Foundation</span></span>
+    <span class="mini-badge"><span class="pill pill-elec" style="padding:2px 8px">Elective</span></span>
+    <span class="mini-badge"><span class="pill pill-sem" style="padding:2px 8px">Seminar</span></span>
+    <span class="mini-badge"><span class="pill pill-proj" style="padding:2px 8px">Project</span></span>
+  </div>
+</div></section>
+
+<section class="section"><div class="container">
+  <SectionHead eb="The rules that keep it rigorous" title="Flexible, not formless." sub="A few clear guardrails ensure freedom always adds up to a coherent, credible degree." gradWord="formless" />
+  <div class="grid g-2">{CREDIT_RULES.map(([ic, t, d], i) => (
+    <div class="card reveal" data-d={(i % 2) + 1}><div class="card-ic"><Icon name={ic} /></div><h3>{t}</h3><p>{d}</p></div>
+  ))}</div>
+</div></section>
+
+<section class="section" style="background:var(--surface-2)"><div class="container">
+  <div class="split">
+    <div class="reveal">
+      <Eyebrow text="Research" />
+      <h2 class="section-title" style="margin:16px 0 20px">Seminars that become <span class="serif-em grad-text">projects</span></h2>
+      <p class="lead">From your third semester, research is woven into the degree. You choose a guide, dive deep into a domain, and present your work at mid-term and end-term reviews.</p>
+      <div class="journey" style="margin-top:32px">
+        <div class="step reveal"><div class="stepno">S3–6</div><div><span class="yr">FOUR SEMESTERS · 4 CREDITS EACH</span><h3>Research Seminars</h3><p>A literature-driven deep dive each semester, guided by a professor of your choice — building the skill of independent research.</p></div></div>
+        <div class="step reveal" data-d="1"><div class="stepno">S7–8</div><div><span class="yr">FINAL YEAR · 6 CREDITS EACH</span><h3>Research Projects</h3><p>Two full-scale projects that let you contribute original work — several CME papers have been accepted at ML and quantitative-finance conferences.</p></div></div>
+      </div>
+    </div>
+    <div class="reveal" data-d="1">
+      <div class="note"><strong>Guides across the institute.</strong> You choose research guides from any department — Mathematics, Computer Science, Management, Biosciences, Design and more — for your seminars and projects, with help from your Faculty Advisor.</div>
+      <div class="card" style="margin-top:16px"><div class="card-ic"><Icon name="target" /></div><h3>Availability of courses</h3><p>High-demand electives are allocated centrally by CPI or lottery, just like every student. For advanced or departmental core courses you secure the instructor's consent — with guidance from your FacAd and the CME team.</p></div>
+    </div>
+  </div>
+</div></section>
+</Base>

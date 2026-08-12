@@ -1,0 +1,37 @@
+---
+import { DEPT } from '~/data/site';
+import { href } from '~/lib/nav';
+import Brand from './Brand.astro';
+import Icon from './Icon.astro';
+
+const prog: [string, string][] = [
+  ['about', 'About CME'], ['curriculum', 'Curriculum & Structure'],
+  ['concentrations', 'BS Concentrations'], ['admissions', 'Admissions'],
+];
+const comm: [string, string][] = [
+  ['people', 'IDPC Faculty'], ['students', 'Students & Seminars'],
+  ['placements', 'Placements'], ['contact', 'Contact'],
+];
+---
+<footer class="site-footer">
+  <div class="footer-accent"></div>
+  <div class="container-wide">
+    <div class="footer-top">
+      <div class="footer-brand">
+        <Brand />
+        <p>An initiative of IIT Bombay giving students the freedom to design their own multidisciplinary degree across every department.</p>
+      </div>
+      <div class="footer-col"><h5>Programme</h5>{prog.map(([s, l]) => <a href={href(s)}>{l}</a>)}</div>
+      <div class="footer-col"><h5>Community</h5>{comm.map(([s, l]) => <a href={href(s)}>{l}</a>)}</div>
+      <div class="footer-col"><h5>Resources</h5>
+        <a href="https://www.iitb.ac.in" target="_blank" rel="noopener">IIT Bombay <Icon name="external" stroke={1.6} /></a>
+        <a href="https://www.ee.iitb.ac.in" target="_blank" rel="noopener">EE Department <Icon name="external" stroke={1.6} /></a>
+        <a href={`mailto:${DEPT.incharge_email}`}>Email the office <Icon name="external" stroke={1.6} /></a>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>&copy; <span id="yr">2026</span> {DEPT.name}, {DEPT.institute}. Formerly the {DEPT.former}.</span>
+      <span>Faculty in-charge &middot; {DEPT.incharge}</span>
+    </div>
+  </div>
+</footer>

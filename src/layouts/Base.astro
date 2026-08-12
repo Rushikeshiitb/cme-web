@@ -1,0 +1,57 @@
+---
+// CME page shell — reproduces the original site's exact <head>, header and footer
+// so the rendered design is byte-for-byte identical to the pre-Astro build.
+// (Deliberately does not use AstroWind's Layout/Tailwind so the look is unchanged.)
+import { DEPT } from '~/data/site';
+import { assetVersion, asset } from '~/lib/assets';
+import Header from '~/components/cme/Header.astro';
+import Footer from '~/components/cme/Footer.astro';
+
+interface Props {
+  slug: string;
+  title: string;
+  desc: string;
+  active?: string;
+}
+const { slug, title, desc, active } = Astro.props;
+const activeSlug = active ?? slug;
+const fullTitle = slug === 'index'
+  ? `CME · ${DEPT.name}, IIT Bombay`
+  : `${title} · CME, IIT Bombay`;
+const v = assetVersion();
+
+const FAVICON =
+  'data:image/svg+xml,' +
+  "%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 40 40'%3E" +
+  "%3Crect width='40' height='40' rx='9' fill='%23733e24'/%3E" +
+  "%3Cg stroke='%23ffffff' stroke-width='2.4' stroke-linecap='round'%3E" +
+  "%3Cpath d='M20 20 11 11'/%3E%3Cpath d='M20 20 29 11'/%3E%3Cpath d='M20 20 20 30'/%3E%3C/g%3E" +
+  "%3Ccircle cx='20' cy='20' r='3.3' fill='%23ffffff'/%3E%3C/svg%3E";
+---
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>{fullTitle}</title>
+<meta name="description" content={desc} />
+<meta property="og:title" content={fullTitle} />
+<meta property="og:description" content={desc} />
+<meta property="og:type" content="website" />
+<meta name="theme-color" content="#733e24" />
+<link rel="icon" href={FAVICON} />
+<link rel="preload" href={asset('assets/fonts/inter-var.woff2')} as="font" type="font/woff2" crossorigin />
+<link rel="preload" href={asset('assets/fonts/fraunces-var.woff2')} as="font" type="font/woff2" crossorigin />
+<link rel="stylesheet" href={`${asset('assets/css/styles.css')}?v=${v}`} />
+<script is:inline>(function(){try{var t=localStorage.getItem('cme-theme');if(t)document.documentElement.setAttribute('data-theme',t);else if(matchMedia('(prefers-color-scheme:dark)').matches)document.documentElement.setAttribute('data-theme','dark');}catch(e){}try{if(!matchMedia('(prefers-reduced-motion:reduce)').matches)document.documentElement.classList.add('js-anim');}catch(e){}})();</script>
+</head>
+<body>
+<Header active={activeSlug} />
+<main id="main">
+<slot />
+</main>
+<Footer />
+<script is:inline src={`${asset('assets/js/main.js')}?v=${v}`} defer></script>
+<script is:inline>document.getElementById('yr').textContent=new Date().getFullYear();</script>
+</body>
+</html>
