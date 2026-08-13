@@ -1,0 +1,51 @@
+---
+import Base from '~/layouts/Base.astro';
+import Icon from '~/components/cme/Icon.astro';
+import SectionHead from '~/components/cme/SectionHead.astro';
+import PageHero from '~/components/cme/PageHero.astro';
+import { ADMISSION_CRITERIA, ADMISSION_STEPS, FAQ } from '~/data/site';
+
+const desc = 'How to join CME at IIT Bombay: eligibility (CPI above 6.0 after first year), the interview process, timeline, and an honest FAQ.';
+---
+<Base slug="admissions" title="Admissions" desc={desc}>
+<PageHero
+  eb="Admissions"
+  title={'Bring your <span class="grad-text serif-em">curiosity.</span>'}
+  lead="Admission to CME opens after your first year at IIT Bombay. The process is holistic, the interview is a conversation, and the decision stays yours."
+  crumb="Admissions"
+/>
+
+<section class="section"><div class="container">
+  <SectionHead eb="Eligibility" title="Who can apply." sub="Open to every first-year undergraduate at IIT Bombay who meets a few clear criteria." />
+  <div class="grid g-4">{ADMISSION_CRITERIA.map(([ic, t, d], i) => (
+    <div class="card reveal" data-d={(i % 4) + 1}><div class="card-ic"><Icon name={ic} /></div><h3>{t}</h3><p>{d}</p></div>
+  ))}</div>
+</div></section>
+
+<section class="section" style="background:var(--surface-2)"><div class="container">
+  <div class="split">
+    <div>
+      <SectionHead eb="The process" title="Four steps, no surprises." sub="From finishing your first year to an official branch change." />
+      <div class="note reveal"><strong>The interview is chill.</strong> Roughly 10–15 minutes, conversational, and evaluation-focused. Not much prep is expected - the panel looks for intellectual curiosity and a clear reason for wanting a flexible curriculum, not a rehearsed three-year plan.</div>
+    </div>
+    <div class="journey reveal" data-d="1">{ADMISSION_STEPS.map((s, i) => (
+      <div class="step reveal" data-d={(i % 3) + 1}><div class="stepno">{i + 1}</div><div><span class="yr">{s.yr}</span><h3>{s.t}</h3><p>{s.d}</p></div></div>
+    ))}</div>
+  </div>
+</div></section>
+
+<section class="section"><div class="container">
+  <div class="grid g-3">
+    <div class="card reveal"><div class="card-ic"><Icon name="route" /></div><h3>Not a point of no return</h3><p>Appearing for the interview isn't binding. You have time to weigh your options and talk it through with your family before anything is finalised.</p></div>
+    <div class="card reveal" data-d="1"><div class="card-ic"><Icon name="users" /></div><h3>Parent orientation</h3><p>A dedicated session addresses parents' questions about the BS degree's validity, placements and academic structure - transparently.</p></div>
+    <div class="card reveal" data-d="2"><div class="card-ic"><Icon name="shield" /></div><h3>The 25% safeguard</h3><p>No department loses more than 25% of its strength to CME. If you're declined solely due to this cap, your CPI isn't held against other applicants.</p></div>
+  </div>
+</div></section>
+
+<section class="section" style="background:var(--surface-2)"><div class="container" style="max-width:900px">
+  <SectionHead eb="Questions & answers" title="The honest FAQ." sub="Straight answers on the degree, placements, workload and the real trade-offs - adapted from the CME Freshers guide." gradWord="honest" />
+  <div class="reveal">{FAQ.map(([q, ans], i) => (
+    <details class="faq-item" open={i === 0}><summary>{q}</summary><div class="faq-a">{ans.map((a) => <p>{a}</p>)}</div></details>
+  ))}</div>
+</div></section>
+</Base>

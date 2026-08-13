@@ -1,0 +1,78 @@
+---
+// Decorative 3×3 Rubik's cube for the home hero.
+// Geometry is emitted at build time; the sticker colours are painted by the
+// inline script below, so every page load shows a different scramble.
+// It only tumbles — it never turns a layer or solves itself.
+type Face = { d: string; outer: boolean };
+type Cubie = { x: number; y: number; z: number; faces: Face[] };
+
+const AXIS = [-1, 0, 1];
+
+// face key → is this face on the outside of the cube?
+// CSS y grows downwards, so y === -1 is the up face.
+const FACES: { d: string; outer: (x: number, y: number, z: number) => boolean }[] = [
+  { d: 'r', outer: (x) => x === 1 },
+  { d: 'l', outer: (x) => x === -1 },
+  { d: 'u', outer: (_x, y) => y === -1 },
+  { d: 'dn', outer: (_x, y) => y === 1 },
+  { d: 'f', outer: (_x, _y, z) => z === 1 },
+  { d: 'b', outer: (_x, _y, z) => z === -1 },
+];
+
+const cubies: Cubie[] = [];
+for (const x of AXIS) {
+  for (const y of AXIS) {
+    for (const z of AXIS) {
+      if (x === 0 && y === 0 && z === 0) continue; // hidden core
+      cubies.push({ x, y, z, faces: FACES.map((f) => ({ d: f.d, outer: f.outer(x, y, z) })) });
+    }
+  }
+}
+---
+
+<div class="rc-stage" aria-hidden="true">
+  <div class="rc-orbit">
+    <div class="rc-tumble">
+      <div class="rc-cube">
+        {/* solid plastic body: fills the cube interior so the page background
+            can never show through the gaps between cubies */}
+        <div class="rc-core">
+          {FACES.map((f) => <i class={`rc-f rc-f-${f.d}`} />)}
+        </div>
+        {cubies.map((c) => (
+          <div class="rc-cubie" style={`--cx:${c.x};--cy:${c.y};--cz:${c.z}`}>
+            {c.faces.map((f) => (
+              <i class={`rc-f rc-f-${f.d}`} data-sticker={f.outer ? '' : undefined} />
+            ))}
+          </div>
+        ))}
+      </div>
+    </div>
+  </div>
+</div>
+<script is:inline>
+  /* Paint a fresh scramble. Inline and synchronous so the colours are in place
+     before first paint (no flash of an unpainted cube). The bag holds exactly
+     nine of each colour, shuffled — so it always reads as a real cube, just
+     never a solved one. */
+  (function () {
+    const COLORS = ['#f4f4f1', '#f0c74a', '#cf4632', '#e8792c', '#2f6bcc', '#339c5c'];
+    document.querySelectorAll('.rc-stage:not([data-painted])').forEach(function (stage) {
+      stage.setAttribute('data-painted', '');
+      const bag = [];
+      COLORS.forEach(function (c) {
+        for (let i = 0; i < 9; i++) bag.push(c);
+      });
+      for (let k = bag.length - 1; k > 0; k--) {
+        const r = Math.floor(Math.random() * (k + 1));
+        const t = bag[k];
+        bag[k] = bag[r];
+        bag[r] = t;
+      }
+      let n = 0;
+      stage.querySelectorAll('.rc-f[data-sticker]').forEach(function (f) {
+        f.style.setProperty('--rc-sticker', bag[n++]);
+      });
+    });
+  })();
+</script>

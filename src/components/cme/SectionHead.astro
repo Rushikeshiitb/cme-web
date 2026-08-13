@@ -1,0 +1,16 @@
+---
+import Eyebrow from './Eyebrow.astro';
+
+interface Props {
+  eb?: string;          // omit for a section that leads with its title
+  title: string;
+  sub?: string;
+  center?: boolean;
+  gradWord?: string;
+}
+const { eb = '', title, sub = '', center = false, gradWord = '' } = Astro.props;
+const h = gradWord && title.includes(gradWord)
+  ? title.replaceAll(gradWord, `<span class="grad-text">${gradWord}</span>`)
+  : title;
+---
+<div class={`section-head${center ? ' center' : ''} reveal`}>{eb && <Eyebrow text={eb} center={center} />}<h2 class="section-title" set:html={h} />{sub && <p class="lead" set:html={sub} />}</div>

@@ -1,0 +1,37 @@
+---
+import Base from '~/layouts/Base.astro';
+import Icon from '~/components/cme/Icon.astro';
+import SectionHead from '~/components/cme/SectionHead.astro';
+import PageHero from '~/components/cme/PageHero.astro';
+import { href } from '~/lib/nav';
+import { DEPT } from '~/data/site';
+
+const desc = 'Contact the Centre for Multidisciplinary Education (CME) at IIT Bombay - faculty in-charge, location, and quick links.';
+---
+<Base slug="contact" title="Contact" desc={desc}>
+<PageHero
+  eb="Contact"
+  title={'Let&rsquo;s <span class="grad-text serif-em">talk.</span>'}
+  lead="Questions about the programme, the curriculum, or applying? Reach the CME office at IIT Bombay."
+  crumb="Contact"
+/>
+
+<section class="section"><div class="container">
+  <div class="grid g-2">
+    <div class="contact-card reveal"><div class="ic"><Icon name="user" /></div><div><h4>Faculty in-charge</h4><p>{DEPT.incharge}</p><a href={`mailto:${DEPT.incharge_email}`}>{DEPT.incharge_email}</a></div></div>
+    <div class="contact-card reveal" data-d="1"><div class="ic"><Icon name="pin" /></div><div><h4>Where we are</h4><p>Centre for Multidisciplinary Education,<br />IIT Bombay, Powai, Mumbai 400076, India</p></div></div>
+    <div class="contact-card reveal"><div class="ic"><Icon name="cap" /></div><div><h4>Prospective students</h4><p>Finishing your first year? Learn how CME works.</p><a href={href('admissions')}>See admissions & eligibility →</a></div></div>
+    <div class="contact-card reveal" data-d="1"><div class="ic"><Icon name="globe" /></div><div><h4>The institute</h4><p>An initiative of IIT Bombay.</p><a href="https://www.iitb.ac.in" target="_blank" rel="noopener">iitb.ac.in →</a></div></div>
+  </div>
+</div></section>
+
+<section class="section" style="background:var(--surface-2)"><div class="container">
+  <SectionHead eb="Explore more" title="Find what you need." center={true} />
+  <div class="grid g-4">
+    <a class="card reveal" href={href('about')}><div class="card-ic"><Icon name="compass" /></div><h3>About CME</h3><p>The idea and philosophy.</p></a>
+    <a class="card reveal" data-d="1" href={href('curriculum')}><div class="card-ic"><Icon name="layers" /></div><h3>Curriculum</h3><p>Structure & credits.</p></a>
+    <a class="card reveal" data-d="2" href={href('students')}><div class="card-ic"><Icon name="flask" /></div><h3>Students</h3><p>Cohort & seminars.</p></a>
+    <a class="card reveal" data-d="3" href={href('placements')}><div class="card-ic"><Icon name="briefcase" /></div><h3>Placements</h3><p>Where CME interns.</p></a>
+  </div>
+</div></section>
+</Base>

@@ -1,0 +1,38 @@
+---
+// Recruiter logos on a seamless horizontal loop. Each row holds two identical
+// groups so the track can scroll exactly -50% and wrap without a visible seam;
+// the second group is aria-hidden so screen readers hear each company once.
+import type { Company } from '~/data/site';
+import { asset } from '~/lib/assets';
+
+interface Props { companies: Company[]; rows?: 1 | 2; }
+const { companies, rows = 2 } = Astro.props;
+
+const size = Math.ceil(companies.length / rows);
+const chunks = Array.from({ length: rows }, (_, i) => companies.slice(i * size, (i + 1) * size))
+  .filter((c) => c.length > 0);
+
+function wordmark(name: string) {
+  const words = name.split(' ');
+  const first = words[0];
+  const rest = words.length > 1 ? ' ' + words.slice(1).join(' ') : '';
+  return { first, rest };
+}
+---
+<div class="logo-marquee reveal">{chunks.map((chunk, r) => (
+  <div class={`marquee-row${r % 2 ? ' rev' : ''}`} style={`--dur:${chunk.length * 4}s`}>
+    <div class="marquee-track">
+      {[false, true].map((dup) => (
+        <div class="marquee-group" aria-hidden={dup ? 'true' : undefined}>
+          {chunk.map((c) => (
+            <div class="logo-chip">
+              {c.logo
+                ? <img class={c.square ? 'sq' : undefined} src={asset(`assets/img/logos/${c.logo}`)} alt={dup ? '' : `${c.n} logo`} loading="lazy" />
+                : <span class="wordmark"><span class="accent">{wordmark(c.n).first}</span>{wordmark(c.n).rest}</span>}
+            </div>
+          ))}
+        </div>
+      ))}
+    </div>
+  </div>
+))}</div>

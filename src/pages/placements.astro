@@ -1,0 +1,43 @@
+---
+import Base from '~/layouts/Base.astro';
+import Icon from '~/components/cme/Icon.astro';
+import Eyebrow from '~/components/cme/Eyebrow.astro';
+import SectionHead from '~/components/cme/SectionHead.astro';
+import PageHero from '~/components/cme/PageHero.astro';
+import LogoMarquee from '~/components/cme/LogoMarquee.astro';
+import { COMPANIES, PLACEMENT_ROLES } from '~/data/site';
+
+const desc = 'CME internships and placements at IIT Bombay - students have interned at Coinbase, Visa, Expedia, Deloitte, Otsuka and more across tech, consulting and startups.';
+---
+<Base slug="placements" title="Placements" desc={desc}>
+<PageHero
+  eb="Internships & Placements"
+  title={'The résumé, <span class="grad-text serif-em">not the branch.</span>'}
+  lead="For modern tech, AI and strategy roles, recruiters hire on skills and portfolio. CME students have already turned that into offers at some of the world's best companies."
+  crumb="Placements"
+/>
+
+<section class="section"><div class="container">
+  <SectionHead title="Past recruiters." sub="The companies where CME students have interned so far - global tech and consulting alongside research labs and early-stage startups." />
+  <LogoMarquee companies={COMPANIES} />
+  <p style="margin-top:16px;font-size:.82rem;color:var(--ink-3)" class="reveal">Logos are shown for identification of recruiters only and remain the property of their respective owners.</p>
+</div></section>
+
+<section class="section" style="background:var(--surface-2)"><div class="container">
+  <SectionHead eb="The roles" title="From SDE to Founder's Office." sub="CME students land across the spectrum of high-quality roles - technical, analytical and entrepreneurial." />
+  <div class="grid g-3">{PLACEMENT_ROLES.map((r, i) => (
+    <div class="card disc reveal" data-d={(i % 3) + 1} style="--c:var(--accent)"><div class="card-ic"><Icon name={r.ic} /></div><h3>{r.t}</h3><p>{r.d}</p><ul style="margin-top:14px">{r.roles.map((x) => <li><Icon name="check" stroke={2} /><span>{x}</span></li>)}</ul></div>
+  ))}</div>
+</div></section>
+
+<section class="section"><div class="container">
+  <div class="split">
+    <div class="reveal"><Eyebrow text="Higher studies" />
+      <h2 class="section-title" style="margin:16px 0 18px">A launchpad for research</h2>
+      <p class="lead">CME is a strong advantage for Master's and PhD applications. Working with multiple professors, taking advanced cross-departmental electives and building a unique research portfolio are exactly the qualities top global universities look for.</p>
+      <p style="margin-top:14px">Students have already had research papers accepted at prestigious conferences in Machine Learning and Quantitative Finance.</p>
+    </div>
+    <div class="reveal" data-d="1"><p class="pullquote" style="font-size:clamp(1.3rem,2.6vw,2rem)">A BS with a declared specialisation is the <span class="grad-text">global standard</span> for research and top-tier PhD programmes.</p></div>
+  </div>
+</div></section>
+</Base>

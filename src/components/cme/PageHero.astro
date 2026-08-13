@@ -1,0 +1,24 @@
+---
+import { href } from '~/lib/nav';
+import Eyebrow from './Eyebrow.astro';
+import Icon from './Icon.astro';
+import RubiksCube from './RubiksCube.astro';
+
+interface Props { eb: string; title: string; lead: string; crumb: string; cube?: boolean; }
+const { eb, title, lead, crumb, cube = false } = Astro.props;
+---
+<section class="page-hero"><div class="hero-grid"></div>
+  <div class="container">
+    {/* only become a two-column grid when there's a cube — otherwise the empty
+        second track's gap would shave width off every other interior page */}
+    <div class={cube ? 'hero-layout' : ''}>
+      <div class="hero-copy">
+        <div class="breadcrumb reveal"><a href={href('index')}>Home</a> <Icon name="arrow" stroke={1.6} /> <span>{crumb}</span></div>
+        <Eyebrow text={eb} />
+        <h1 class="reveal" data-d="1" set:html={title} />
+        <p class="lead reveal" data-d="2" set:html={lead} />
+      </div>
+      {cube && <div class="hero-visual reveal" data-d="3"><RubiksCube /></div>}
+    </div>
+  </div>
+</section>

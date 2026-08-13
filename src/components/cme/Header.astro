@@ -1,0 +1,31 @@
+---
+import { NAV } from '~/data/site';
+import { href } from '~/lib/nav';
+import Brand from './Brand.astro';
+import Icon from './Icon.astro';
+
+interface Props { active: string; }
+const { active } = Astro.props;
+
+const mobileNav: [string, string][] = [['index', 'Home'], ...NAV];
+const pad = (n: number) => String(n).padStart(2, '0');
+---
+<header class="site-header">
+  <nav class="nav container-wide" aria-label="Primary">
+    <Brand />
+    <div class="nav-links">
+      {NAV.map(([slug, label]) => (
+        <a href={href(slug)} class={slug === active ? 'active' : undefined} aria-current={slug === active ? 'page' : undefined}>{label}</a>
+      ))}
+    </div>
+    <div class="nav-actions">
+      <button class="theme-toggle" data-theme-toggle aria-label="Toggle colour theme"><Icon name="moon" cls="moon" /><Icon name="sun" cls="sun" /></button>
+      <button class="menu-btn" id="menuBtn" aria-label="Open menu" aria-expanded="false"><Icon name="menu" /></button>
+    </div>
+  </nav>
+</header>
+<div class="mobile-menu" id="mobileMenu">
+  {mobileNav.map(([slug, label], i) => (
+    <a href={href(slug)} class={slug === active ? 'active' : undefined} aria-current={slug === active ? 'page' : undefined}><span>{pad(i + 1)}</span>{label}</a>
+  ))}
+</div>

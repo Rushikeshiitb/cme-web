@@ -1,0 +1,25 @@
+---
+// Inline SVG icon — the CME design's own icon renderer.
+import { ICON_PATHS } from '~/lib/icons';
+
+interface Props {
+  name: string;
+  cls?: string;
+  stroke?: number;
+}
+const { name, cls = '', stroke = 1.7 } = Astro.props;
+const inner = ICON_PATHS[name] ?? ICON_PATHS.sparkle;
+---
+<svg
+  class={cls || undefined}
+  width="24"
+  height="24"
+  viewBox="0 0 24 24"
+  fill="none"
+  stroke="currentColor"
+  stroke-width={stroke}
+  stroke-linecap="round"
+  stroke-linejoin="round"
+  aria-hidden="true"
+  set:html={inner}
+/>

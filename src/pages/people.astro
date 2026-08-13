@@ -1,0 +1,52 @@
+---
+import Base from '~/layouts/Base.astro';
+import Icon from '~/components/cme/Icon.astro';
+import Eyebrow from '~/components/cme/Eyebrow.astro';
+import SectionHead from '~/components/cme/SectionHead.astro';
+import PageHero from '~/components/cme/PageHero.astro';
+import { asset } from '~/lib/assets';
+import { DEPT, FACULTY } from '~/data/site';
+
+const desc = 'The IDPC Team 2026 - twelve faculty members from across IIT Bombay who run the Centre for Multidisciplinary Education.';
+---
+<Base slug="people" title="Faculty" desc={desc} active="people">
+<PageHero
+  eb="The IDPC Faculty"
+  title={'Mentored by <span class="grad-text serif-em">twelve departments.</span>'}
+  lead="The Inter-Departmental Programme Committee brings together faculty from across IIT Bombay to design the curriculum and advise every CME student one-on-one."
+  crumb="Faculty"
+/>
+
+<section class="section-sm"><div class="container">
+  <div class="card reveal" style="border-color:var(--accent);display:flex;gap:24px;align-items:center;flex-wrap:wrap">
+    <img class="incharge-photo" src={asset('assets/img/faculty/rajesh-zele.jpg')} alt={DEPT.incharge} loading="lazy" />
+    <div style="flex:1;min-width:220px"><span class="eyebrow">Faculty in-charge</span><h3 style="font-family:var(--ff-display);font-size:1.5rem;margin-top:8px">{DEPT.incharge}</h3><p style="margin-top:4px">Leading the Centre for Multidisciplinary Education and the 2026 incoming-student orientation.</p></div>
+    <a class="btn btn-ghost" href={`mailto:${DEPT.incharge_email}`}><Icon name="mail" /> Email</a>
+  </div>
+</div></section>
+
+<section class="section" style="padding-top:clamp(24px,4vw,40px)"><div class="container">
+  <SectionHead eb="IDPC Team 2026" title="The committee behind your degree." sub="Twelve faculty members from Computer Science, Design, Management, Chemistry, Mechanical, Civil, Biosciences, Materials and Humanities." />
+  <div class="faculty-grid">{FACULTY.map(([name, dept, slug, site], i) => (
+    <div class="fac reveal" data-d={(i % 4) + 1}><div class="ph"><img src={asset(`assets/img/faculty/${slug}.jpg`)} alt={name} loading="lazy" />
+      <span class="dept">{dept}</span></div>
+      <div class="nm">{name}</div><div class="role">{dept}</div>{site && <a class="site" href={site} target="_blank" rel="noopener">Visit website <Icon name="external" stroke={1.7} /></a>}</div>
+  ))}</div>
+</div></section>
+
+<section class="section" style="background:var(--surface-2)"><div class="container">
+  <div class="split">
+    <div class="reveal"><Eyebrow text="Faculty advisors" />
+      <h2 class="section-title" style="margin:16px 0 18px">Every student, one dedicated advisor</h2>
+      <p class="lead">Beyond the committee, each CME student is paired with a Faculty Advisor (FacAd) who approves their individual Plan of Study and mentors them each semester.</p>
+      <p style="margin-top:14px">Students also choose research guides across the institute - from Mathematics and Computer Science to Management, Biosciences and Design - for their seminars and projects.</p>
+    </div>
+    <div class="reveal" data-d="1"><div class="grid g-2" style="gap:14px">
+      <div class="mini-badge" style="justify-content:center;padding:18px"><Icon name="user" /> 1-on-1 mentorship</div>
+      <div class="mini-badge" style="justify-content:center;padding:18px"><Icon name="book" /> Approves your Plan of Study</div>
+      <div class="mini-badge" style="justify-content:center;padding:18px"><Icon name="flask" /> Guides seminars & projects</div>
+      <div class="mini-badge" style="justify-content:center;padding:18px"><Icon name="compass" /> Advises course choices</div>
+    </div></div>
+  </div>
+</div></section>
+</Base>

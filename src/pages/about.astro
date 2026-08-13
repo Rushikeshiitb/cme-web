@@ -1,0 +1,77 @@
+---
+import Base from '~/layouts/Base.astro';
+import Icon from '~/components/cme/Icon.astro';
+import Eyebrow from '~/components/cme/Eyebrow.astro';
+import SectionHead from '~/components/cme/SectionHead.astro';
+import PageHero from '~/components/cme/PageHero.astro';
+import { href } from '~/lib/nav';
+import { asset } from '~/lib/assets';
+import { DEPT } from '~/data/site';
+
+const desc = 'About the Centre for Multidisciplinary Education (CME) at IIT Bombay - its idea, philosophy, history as the former CLE, and leadership.';
+---
+<Base slug="about" title="About" desc={desc}>
+<PageHero
+  eb="About CME"
+  title={'A centre built on a simple, radical idea: <span class="grad-text serif-em">let students choose.</span>'}
+  lead="CME gives IIT Bombay's most curious students the freedom - and the structure - to build a degree across every discipline."
+  crumb="About"
+  cube
+/>
+
+<section class="section"><div class="container">
+  <div class="split">
+    <div class="reveal prose">
+      <Eyebrow text="The idea" />
+      <h2 class="section-title" style="margin:16px 0 20px">Freedom to follow your curiosity</h2>
+      <p>The Centre for Multidisciplinary Education is an initiative of IIT Bombay for students who want more than one department can offer. After completing the first year in any undergraduate programme, students join CME and gain the freedom to choose their own coursework - electives and even core courses - from <strong>any</strong> department in the institute.</p>
+      <p>It is a fully individualised education: your interests define your curriculum, your Faculty Advisor keeps it rigorous, and your research seminars and projects give it depth. You graduate not with a generic template, but with a degree that is unmistakably yours.</p>
+    </div>
+    <div class="reveal" data-d="1"><p class="pullquote" style="font-size:clamp(1.3rem,2.6vw,2rem)">Students have the freedom to choose all of their courses - electives and even the core courses of every department - while being mentored by <span class="grad-text">renowned professors</span> across the institute.</p></div>
+  </div>
+</div></section>
+
+<section class="section" style="background:var(--surface-2)"><div class="container">
+  <SectionHead eb="Who CME is for" title="Built for the self-driven." sub="CME rewards curiosity, initiative and a clear sense of what excites you - while being honest about the trade-offs." gradWord="self-driven" />
+  <div class="grid g-2">
+    <div class="card reveal"><div class="card-ic" style="background:color-mix(in srgb,var(--hue-eco) 14%,transparent);color:var(--hue-eco)"><Icon name="check" /></div><h3>CME is a great fit if you…</h3>
+      <ul class="disc" style="border:0;padding:0;background:none;margin-top:14px">
+        <li><Icon name="check" stroke={2} /><span>Have interests that spill across departments - AI and healthcare, policy and tech, biology and computation.</span></li>
+        <li><Icon name="check" stroke={2} /><span>Enjoy owning your schedule and taking initiative to secure the courses you want.</span></li>
+        <li><Icon name="check" stroke={2} /><span>Want to work closely with professors on research from early on.</span></li>
+        <li><Icon name="check" stroke={2} /><span>Are aiming for top global Master's or PhD programmes.</span></li>
+      </ul>
+    </div>
+    <div class="card reveal" data-d="1"><div class="card-ic" style="background:color-mix(in srgb,var(--hue-hum) 14%,transparent);color:var(--hue-hum)"><Icon name="scale" /></div><h3>Be honest with yourself about…</h3>
+      <ul class="disc" style="border:0;padding:0;background:none;margin-top:14px">
+        <li><Icon name="arrow" stroke={2} /><span>Academic competitiveness - you're graded alongside the majors whose courses you take.</span></li>
+        <li><Icon name="arrow" stroke={2} /><span>A smaller cohort - you build your own network rather than inheriting a department block.</span></li>
+        <li><Icon name="arrow" stroke={2} /><span>Administrative ownership - you assemble your timetable and secure instructor consent yourself.</span></li>
+        <li><Icon name="arrow" stroke={2} /><span>A proactive mindset - flexibility rewards those who use it deliberately.</span></li>
+      </ul>
+    </div>
+  </div>
+</div></section>
+
+<section class="section"><div class="container">
+  <div class="split rev">
+    <div class="reveal">
+      <Eyebrow text="Leadership" />
+      <h2 class="section-title" style="margin:16px 0 18px">Guided by the IDPC</h2>
+      <p class="lead">CME is run by an Inter-Departmental Programme Committee - twelve faculty members drawn from Computer Science, Design, Management, Chemistry, Mechanical, Civil, Biosciences, Humanities and more.</p>
+      <p style="margin-top:14px">Together they design the curriculum, advise students one-on-one, and open doors to courses and research across the entire institute. It is, quite literally, an education mentored by a dozen departments at once.</p>
+      <div style="margin-top:26px"><a class="btn btn-primary" href={href('people')}>Meet the faculty <Icon name="arrow" /></a></div>
+    </div>
+    <div class="reveal" data-d="1">
+      <div class="card" style="padding:30px;border-color:var(--accent)">
+        <img class="incharge-photo lg" src={asset('assets/img/faculty/rajesh-zele.jpg')} alt={DEPT.incharge} loading="lazy" />
+        <span class="eyebrow">Faculty in-charge</span>
+        <h3 style="font-family:var(--ff-display);font-size:1.7rem;margin:14px 0 4px">{DEPT.incharge}</h3>
+        <p style="font-family:var(--ff-mono);font-size:.8rem;color:var(--ink-3)">CME · IIT BOMBAY</p>
+        <p style="margin-top:16px">Leading the Centre for Multidisciplinary Education and its incoming-student orientation for 2026.</p>
+        <a class="btn btn-ghost" style="margin-top:18px" href={`mailto:${DEPT.incharge_email}`}><Icon name="mail" /> {DEPT.incharge_email}</a>
+      </div>
+    </div>
+  </div>
+</div></section>
+</Base>

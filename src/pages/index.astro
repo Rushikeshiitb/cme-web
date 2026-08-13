@@ -1,0 +1,127 @@
+---
+import Base from '~/layouts/Base.astro';
+import Icon from '~/components/cme/Icon.astro';
+import Eyebrow from '~/components/cme/Eyebrow.astro';
+import SectionHead from '~/components/cme/SectionHead.astro';
+import StatStrip from '~/components/cme/StatStrip.astro';
+import LogoMarquee from '~/components/cme/LogoMarquee.astro';
+import RubiksCube from '~/components/cme/RubiksCube.astro';
+import { href } from '~/lib/nav';
+import { asset } from '~/lib/assets';
+import { initials } from '~/lib/text';
+import { STATS, WHY, FOUNDATION, CONCENTRATIONS, FEATURED_SEMINARS, COMPANIES, FACULTY } from '~/data/site';
+
+const desc = 'The Centre for Multidisciplinary Education (CME) at IIT Bombay lets students design their own degree across every department and graduate with a Bachelor of Science.';
+---
+<Base slug="index" title="Home" desc={desc}>
+<section class="hero"><div class="hero-grid"></div>
+  <div class="container">
+    <div class="hero-layout">
+      <div class="hero-copy">
+        <div class="reveal"><span class="hero-badge"><Icon name="sparkle" stroke={1.6} /> IIT Bombay</span></div>
+        <h1 class="display reveal" data-d="1" style="margin-top:26px">Centre for<br /><span class="grad-text serif-em">Multidisciplinary</span> Education</h1>
+        <p class="hero-tagline reveal" data-d="2">Design your own degree.</p>
+        <p class="lead reveal" data-d="3">The Centre for Multidisciplinary Education at IIT Bombay lets you choose your own coursework across <strong>every department</strong> - and graduate with a Bachelor of Science built entirely around your curiosity.</p>
+        <div class="hero-cta reveal" data-d="3">
+          <a class="btn btn-primary btn-lg" href={href('about')}>What is CME? <Icon name="arrow" /></a>
+          <a class="btn btn-ghost btn-lg" href={href('curriculum')}>See the structure <Icon name="layers" /></a>
+        </div>
+      </div>
+      <div class="hero-visual reveal" data-d="4"><RubiksCube /></div>
+    </div>
+    <div style="margin-top:clamp(48px,7vw,88px)"><StatStrip /></div>
+  </div>
+</section>
+
+<section class="section"><div class="container">
+  <div class="layout">
+    <div class="reveal">
+      <Eyebrow text="The idea" />
+      <h2 class="section-title" style="margin:14px 0 22px">One institute. Every discipline. <span class="serif-em grad-text">Your path.</span></h2>
+      <div class="prose">
+        <p class="lead">CME is an initiative of IIT Bombay for students who refuse to be boxed into a single branch. After your first year, you join CME and gain the freedom to assemble courses - electives <em>and</em> core courses - from any department.</p>
+        <p>A dedicated Faculty Advisor helps you turn that freedom into a coherent, rigorous plan. The result is a degree as individual as you are, inspired by the flexible models of MIT and Harvard.</p>
+      </div>
+      <div class="badge-row" style="margin-top:26px">
+        <span class="mini-badge"><Icon name="cap" /> 100% official branch change</span>
+        <span class="mini-badge"><Icon name="globe" /> Globally recognised BS</span>
+        <span class="mini-badge"><Icon name="user" /> 1-on-1 faculty advisor</span>
+      </div>
+      <div class="media-frame" style="aspect-ratio:16/7;margin-top:26px">
+        <img src={asset('assets/img/campus/main-building.jpg')} alt="IIT Bombay Main Building" loading="lazy" />
+        <span class="tag"><Icon name="pin" stroke={1.6} /> IIT Bombay · Powai</span>
+      </div>
+    </div>
+    <aside class="aside reveal" data-d="1">
+      <div class="sidebar-card">
+        <h3>At a glance</h3>
+        {STATS.map((s) => (
+          <div class="sidebar-fact"><span class="v">{s.num}{s.suf && <small>{s.suf}</small>}</span><span class="k">{s.lbl}</span></div>
+        ))}
+      </div>
+      <div class="sidebar-card">
+        <h3>Get started</h3>
+        <ul class="sidebar-links">
+          <li><a href={href('admissions')}>Admissions & eligibility <Icon name="arrow" stroke={1.6} /></a></li>
+          <li><a href={href('curriculum')}>Curriculum & structure <Icon name="arrow" stroke={1.6} /></a></li>
+          <li><a href={href('concentrations')}>The four BS degrees <Icon name="arrow" stroke={1.6} /></a></li>
+          <li><a href={href('students')}>Students & seminars <Icon name="arrow" stroke={1.6} /></a></li>
+        </ul>
+      </div>
+    </aside>
+  </div>
+</div></section>
+
+<section class="section" style="background:var(--surface-2)"><div class="container">
+  <SectionHead eb="Why CME" title="Freedom, with a compass." sub="Radical academic flexibility, held together by mentorship, structure and purpose." gradWord="compass" />
+  <div class="grid g-3">{WHY.map((w, i) => (
+    <div class="why-card reveal" data-d={(i % 3) + 1}><div class="card-ic"><Icon name={w.ic} /></div><div class="idx">0{i + 1}</div><h3>{w.t}</h3><p>{w.d}</p></div>
+  ))}</div>
+</div></section>
+
+<section class="section"><div class="container">
+  <SectionHead eb="Foundation" title="Six areas. One well-rounded mind." sub="Before you specialise, you earn six credits in each of six foundation areas - a genuine grounding across the sciences, humanities and design." />
+  <div class="grid g-3">{FOUNDATION.map((b, i) => (
+    <div class="card disc reveal" data-d={(i % 3) + 1} style={`--c:var(${b.hue})`}><div class="card-ic"><Icon name={b.ic} /></div><span class="credits">6 CREDITS</span><h3 style="margin-top:8px">{b.name}</h3><p>{b.blurb}</p></div>
+  ))}</div>
+  <div style="margin-top:36px" class="reveal"><a class="btn btn-ghost" href={href('curriculum')}>Explore the full curriculum <Icon name="arrow" /></a></div>
+</div></section>
+
+<section class="section" style="background:var(--surface-2)"><div class="container">
+  <SectionHead eb="Concentrations" title="Four ways to graduate." sub="Every CME student earns a Bachelor of Science in one of four concentrations - chosen through the electives you love." gradWord="graduate" />
+  <div class="grid g-2">{CONCENTRATIONS.map((c, i) => (
+    <div class="conc reveal" data-d={(i % 2) + 1} style={`--c:var(${c.hue})`}><div class="glow"></div>
+      <div class="card-ic" style={`background:color-mix(in srgb,var(${c.hue}) 14%,transparent);color:var(${c.hue})`}><Icon name={c.ic} /></div>
+      <span class="deg" style="margin-top:16px;display:block">{c.deg}</span>
+      <h3>{c.deg.replace('BS in ', '')}</h3><p>{c.d}</p><div class="fields">{c.fields.slice(0, 4).map((f) => <span>{f}</span>)}</div></div>
+  ))}</div>
+</div></section>
+
+<section class="section"><div class="container">
+  <SectionHead eb="Student research" title="Seminars that cross every border." sub="From reinforcement learning to raga recognition, from quantum entanglement to archaeology - a glimpse of where CME curiosity goes." gradWord="border" />
+  <div class="grid g-3">{FEATURED_SEMINARS.slice(0, 6).map((s, i) => (
+    <div class="sem-feat reveal" data-d={(i % 3) + 1} style={`--c:var(${s.hue})`}><div class="barcode" style={`background:linear-gradient(90deg,var(${s.hue}),var(--accent))`}></div>
+      <span class="eyebrow">{s.field}</span>
+      <p class="quote">{s.topic}</p>
+      <div class="meta"><div class="avatar" style={`width:34px;height:34px;font-size:.8rem;background:var(${s.hue})`}>{initials(s.who)}</div>
+      <div><div style="font-weight:600;font-size:.9rem">{s.who}</div><div style="font-size:.78rem;color:var(--ink-3);font-family:var(--ff-mono)">Batch of {s.batch}</div></div></div></div>
+  ))}</div>
+  <div style="margin-top:36px" class="reveal"><a class="btn btn-ghost" href={href('students')}>Meet the students & browse seminars <Icon name="arrow" /></a></div>
+</div></section>
+
+<section class="section" style="background:var(--surface-2)"><div class="container">
+  <SectionHead eb="Where CME goes" title="From this classroom to those companies." sub="CME students intern where the best of tech, finance and research recruit - on the strength of their skills and portfolios." />
+  <LogoMarquee companies={COMPANIES.filter((c) => c.flagship)} rows={1} />
+  <div style="margin-top:36px" class="reveal"><a class="btn btn-ghost" href={href('placements')}>See internships & roles <Icon name="arrow" /></a></div>
+</div></section>
+
+<section class="section"><div class="container">
+  <SectionHead eb="The people" title="Mentored by twelve departments at once." sub="The Inter-Departmental Programme Committee (IDPC) brings together faculty from across IIT Bombay to guide every CME student." />
+  <div class="faculty-grid">{FACULTY.slice(0, 8).map(([name, dept, slug], i) => (
+    <div class="fac reveal" data-d={(i % 4) + 1}><div class="ph"><img src={asset(`assets/img/faculty/${slug}.jpg`)} alt={name} loading="lazy" />
+      <span class="dept">{dept.split('&')[0].trim().slice(0, 22)}</span></div>
+      <div class="nm">{name}</div></div>
+  ))}</div>
+  <div style="margin-top:36px" class="reveal"><a class="btn btn-ghost" href={href('people')}>Meet the full IDPC team <Icon name="arrow" /></a></div>
+</div></section>
+</Base>
