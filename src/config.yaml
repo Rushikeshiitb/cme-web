@@ -11,7 +11,7 @@ metadata:
   title:
     default: CME · Centre for Multidisciplinary Education, IIT Bombay
     template: '%s · CME, IIT Bombay'
-  description: 'The Centre for Multidisciplinary Education (CME) at IIT Bombay lets students design their own degree across every department and graduate with a Bachelor of Science.'
+  description: 'The Centre for Multidisciplinary Education (CME) at IIT Bombay lets students design their own degree across any department and graduate with a four-year Bachelor of Science.'
   robots:
     index: true
     follow: true

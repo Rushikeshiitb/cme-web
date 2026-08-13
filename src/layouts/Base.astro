@@ -6,6 +6,7 @@ import { DEPT } from '~/data/site';
 import { assetVersion, asset } from '~/lib/assets';
 import Header from '~/components/cme/Header.astro';
 import Footer from '~/components/cme/Footer.astro';
+import Preloader from '~/components/cme/Preloader.astro';
 
 interface Props {
   slug: string;
@@ -43,9 +44,14 @@ const FAVICON =
 <link rel="preload" href={asset('assets/fonts/inter-var.woff2')} as="font" type="font/woff2" crossorigin />
 <link rel="preload" href={asset('assets/fonts/fraunces-var.woff2')} as="font" type="font/woff2" crossorigin />
 <link rel="stylesheet" href={`${asset('assets/css/styles.css')}?v=${v}`} />
-<script is:inline>(function(){try{var t=localStorage.getItem('cme-theme');if(t)document.documentElement.setAttribute('data-theme',t);else if(matchMedia('(prefers-color-scheme:dark)').matches)document.documentElement.setAttribute('data-theme','dark');}catch(e){}try{if(!matchMedia('(prefers-reduced-motion:reduce)').matches)document.documentElement.classList.add('js-anim');}catch(e){}})();</script>
+<script is:inline>(function(){try{var t=localStorage.getItem('cme-theme');if(t)document.documentElement.setAttribute('data-theme',t);else if(matchMedia('(prefers-color-scheme:dark)').matches)document.documentElement.setAttribute('data-theme','dark');}catch(e){}try{if(!matchMedia('(prefers-reduced-motion:reduce)').matches)document.documentElement.classList.add('js-anim');}catch(e){}
+/* loading curtain: plays on every page load for now, skipped only when motion is
+   unwelcome. Set here (not in main.js) so the curtain is up before the page ever
+   paints. The timer is a failsafe - if main.js never runs, the site still appears. */
+try{if(!matchMedia('(prefers-reduced-motion:reduce)').matches){document.documentElement.classList.add('is-loading');setTimeout(function(){document.documentElement.classList.remove('is-loading');},4000);}}catch(e){}})();</script>
 </head>
 <body>
+<Preloader />
 <Header active={activeSlug} />
 <main id="main">
 <slot />

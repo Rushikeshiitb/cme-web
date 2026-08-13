@@ -179,6 +179,37 @@ code{font-family:var(--ff-mono);font-size:.85em}
 .link-arrow:hover svg{transform:translateX(3px)}
 
 /* ==========================================================================
+   LOADING CURTAIN  (markup: components/cme/Preloader.astro, motion: main.js)
+   ========================================================================== */
+/* The curtain only exists while <html>.is-loading is set by the inline head script,
+   so no-JS and repeat visits never see it - and it can never trap the page. */
+.preloader{position:fixed;inset:0;z-index:120;display:none;place-items:center;pointer-events:none}
+html.is-loading .preloader{display:grid}
+/* the backdrop is its own layer: it fades out while the logo is still flying, so the
+   page appears underneath mid-flight instead of after it */
+.pl-bg{position:absolute;inset:0;background:var(--bg);will-change:opacity;transition:opacity .6s ease}
+.preloader.exit .pl-bg{opacity:0}
+/* horizontal lockup: logo on the left, the three-line wordmark beside it */
+.pl-inner{position:relative;display:flex;align-items:center;gap:clamp(16px,2.4vw,28px);padding:24px;text-align:left}
+.pl-logo-in{display:block;flex-shrink:0;will-change:opacity,transform}
+.pl-logo{width:clamp(62px,10vw,104px);height:auto;border-radius:22%;display:block;will-change:transform;
+  transform-origin:50% 50%;transition:transform .8s cubic-bezier(.55,.06,.2,1)}
+.pl-word{font-family:var(--ff-display);font-weight:600;line-height:1.05;letter-spacing:-.025em;
+  font-size:clamp(1.3rem,5vw,2.7rem)}
+.pl-word span{display:block}
+/* inline-block so the clipped gradient sizes to the word, not the line box */
+.pl-word .grad-text{display:inline-block}
+.preloader.exit .pl-word{opacity:0;transform:translateY(-8px);transition:opacity .32s ease,transform .32s ease}
+/* the real header logo waits offstage until the flying one lands on it */
+html.is-loading .site-header .brand .mark{opacity:0}
+.js-anim .pl-logo-in,.js-anim .pl-word span{animation:plRise .62s var(--ease) both}
+.js-anim .pl-word span:nth-child(1){animation-delay:.08s}
+.js-anim .pl-word span:nth-child(2){animation-delay:.16s}
+.js-anim .pl-word span:nth-child(3){animation-delay:.24s}
+@keyframes plRise{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:none}}
+@media(prefers-reduced-motion:reduce){.preloader{display:none!important}}
+
+/* ==========================================================================
    HEADER
    ========================================================================== */
 .site-header{
@@ -189,7 +220,9 @@ code{font-family:var(--ff-mono);font-size:.85em}
 .site-header.scrolled{border-bottom-color:var(--line);box-shadow:var(--shadow-1)}
 .nav{display:flex;align-items:center;justify-content:space-between;gap:1rem;padding-block:.7rem}
 .brand{display:flex;align-items:center;gap:.6rem;flex-shrink:0}
-.brand .mark{width:34px;height:34px;border-radius:9px;transition:transform var(--t-med)}
+/* percentage radius (not 9px) so the loading logo, which lands here scaled down by a
+   transform, keeps exactly the same corner curve as it arrives */
+.brand .mark{width:34px;height:34px;border-radius:22%;object-fit:cover;transition:transform var(--t-med)}
 .brand:hover .mark{transform:rotate(-6deg) scale(1.04)}
 .brand span{display:flex;flex-direction:column;font-family:var(--ff-brand);font-weight:700;font-size:1.05rem;line-height:1.05;letter-spacing:-.01em}
 .brand small{font-family:var(--ff-mono);font-weight:600;font-size:.6rem;letter-spacing:.16em;color:var(--ink-3);margin-top:2px}
@@ -295,7 +328,9 @@ code{font-family:var(--ff-mono);font-size:.85em}
   .hero-visual{justify-content:flex-end}
   /* park the cube's centre on the second headline line ("Multidisciplinary"):
      badge block (~64px) + 1.5 headline lines, less half the cube's tumble box */
-  .hero .rc-stage{margin-top:calc(64px + 1.5*clamp(2.7rem,7.6vw,5.1rem) - 3.05*var(--rc-step))}
+  /* `left` rather than a margin: the stage is already position:relative, so the nudge
+     shifts the cube without disturbing the flex-end alignment it sits on */
+  .hero .rc-stage{margin-top:calc(64px + 1.5*clamp(2.7rem,7.6vw,5.1rem) - 3.05*var(--rc-step));left:4px}
 }
 
 /* ---------- decorative 3×3 cube (home hero) ----------
@@ -422,7 +457,9 @@ code{font-family:var(--ff-mono);font-size:.85em}
 .layout{display:grid;grid-template-columns:1fr;gap:clamp(28px,4vw,48px)}
 @media(min-width:980px){
   .layout{grid-template-columns:1.9fr 1fr}
-  .layout .aside{position:sticky;top:96px;align-self:start}
+  /* one short card against a much taller text column: centring splits the leftover
+     space evenly instead of stacking it all underneath */
+  .layout .aside{align-self:center}
 }
 
 /* ==========================================================================
@@ -545,12 +582,11 @@ a.card:hover{border-color:var(--accent-line);transform:translateY(-3px);box-shad
 .fac{background:var(--surface-2);border:1px solid var(--line);border-radius:var(--r-md);overflow:hidden;display:flex;flex-direction:column;
   box-shadow:var(--shadow-1);transition:border-color var(--t-med),box-shadow var(--t-med),transform var(--t-med)}
 .fac:hover{border-color:var(--accent-line);box-shadow:var(--shadow-3);transform:translateY(-4px)}
-.fac .ph{position:relative;aspect-ratio:1/1;background:var(--line-soft);overflow:hidden}
+/* the portraits are drawn 4:5, so the frame matches them - a square frame had to
+   letterbox them, which left pale bands down each side of the sketch paper */
+.fac .ph{position:relative;aspect-ratio:4/5;background:var(--line-soft);overflow:hidden}
 .fac .ph img{width:100%;height:100%;object-fit:cover;transition:transform .5s var(--ease)}
 .fac:hover .ph img{transform:scale(1.05)}
-.fac .ph .dept{position:absolute;left:0;right:0;bottom:0;font-family:var(--ff-mono);font-size:.62rem;
-  letter-spacing:.05em;text-transform:uppercase;color:#fff;background:linear-gradient(transparent,rgba(10,7,4,.82));
-  padding:1.5rem .7rem .5rem}
 .fac .nm{font-weight:700;font-size:.95rem;padding:.75rem .8rem .2rem;letter-spacing:-.01em}
 .fac .role{font-size:.78rem;color:var(--ink-3);padding:0 .8rem .7rem;flex:1}
 .fac .site{display:inline-flex;align-items:center;gap:.35rem;font-family:var(--ff-mono);font-weight:600;
@@ -659,8 +695,13 @@ table.curric tbody td:hover>.pill::after{transform:translateX(130%)}
 .stu:hover .stu-more svg{transform:translateX(4px)}
 
 /* faculty in-charge photo */
-.incharge-photo{width:132px;height:132px;border-radius:var(--r-md);object-fit:cover;flex-shrink:0;border:1px solid var(--line)}
-.incharge-photo.lg{width:160px;height:160px;display:block;margin:0 0 18px}
+/* the in-charge card carries a single name and label, so both sit a step above the
+   default eyebrow/card-heading scale - at body size they read as a caption, not a header */
+.incharge-card .eyebrow{font-size:.85rem;letter-spacing:.16em;margin-bottom:0}
+.incharge-card h3{font-family:var(--ff-display);font-size:clamp(1.7rem,2.4vw,2.05rem);margin:10px 0 0;letter-spacing:-.015em}
+/* 4:5 like the portraits themselves, so a square frame isn't cropping the head */
+.incharge-photo{width:clamp(140px,17vw,176px);aspect-ratio:4/5;height:auto;border-radius:var(--r-md);object-fit:cover;flex-shrink:0;border:1px solid var(--line)}
+.incharge-photo.lg{width:190px;display:block;margin:0 0 18px}
 
 /* student seminar modal */
 .stu-modal{position:fixed;inset:0;z-index:200;display:flex;align-items:center;justify-content:center;padding:1.2rem}
@@ -722,6 +763,9 @@ table.curric tbody td:hover>.pill::after{transform:translateX(130%)}
 .media-frame .tag{position:absolute;left:.7rem;bottom:.7rem;font-family:var(--ff-mono);font-size:.68rem;color:#fff;
   background:rgba(10,7,4,.62);backdrop-filter:blur(4px);border-radius:.4rem;padding:.32rem .6rem;display:inline-flex;align-items:center;gap:.35rem}
 .media-frame .tag svg{width:1em;height:1em}
+.media-credit{margin-top:8px;font-family:var(--ff-mono);font-size:.66rem;color:var(--ink-3)}
+.media-credit a{color:inherit;text-decoration:underline;text-underline-offset:2px}
+.media-credit a:hover{color:var(--accent)}
 .contact-card{display:flex;gap:1rem;background:var(--surface-2);border:1px solid var(--line);border-radius:var(--r-md);padding:1.5rem;
   box-shadow:var(--shadow-1);transition:border-color var(--t-med),box-shadow var(--t-med),transform var(--t-med)}
 .contact-card:hover{border-color:var(--accent-line);box-shadow:var(--shadow-2);transform:translateY(-2px)}

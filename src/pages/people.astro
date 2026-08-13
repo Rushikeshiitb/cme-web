@@ -18,9 +18,9 @@ const desc = 'The IDPC Team 2026 - twelve faculty members from across IIT Bombay
 />
 
 <section class="section-sm"><div class="container">
-  <div class="card reveal" style="border-color:var(--accent);display:flex;gap:24px;align-items:center;flex-wrap:wrap">
+  <div class="card incharge-card reveal" style="border-color:var(--accent);display:flex;gap:24px;align-items:center;flex-wrap:wrap">
     <img class="incharge-photo" src={asset('assets/img/faculty/rajesh-zele.jpg')} alt={DEPT.incharge} loading="lazy" />
-    <div style="flex:1;min-width:220px"><span class="eyebrow">Faculty in-charge</span><h3 style="font-family:var(--ff-display);font-size:1.5rem;margin-top:8px">{DEPT.incharge}</h3><p style="margin-top:4px">Leading the Centre for Multidisciplinary Education and the 2026 incoming-student orientation.</p></div>
+    <div style="flex:1;min-width:220px"><span class="eyebrow">Prof. In-Charge (HoD)</span><h3>{DEPT.incharge}</h3><p style="margin-top:8px">Leading the Centre for Multidisciplinary Education and the 2026 incoming-student orientation.</p></div>
     <a class="btn btn-ghost" href={`mailto:${DEPT.incharge_email}`}><Icon name="mail" /> Email</a>
   </div>
 </div></section>
@@ -28,8 +28,7 @@ const desc = 'The IDPC Team 2026 - twelve faculty members from across IIT Bombay
 <section class="section" style="padding-top:clamp(24px,4vw,40px)"><div class="container">
   <SectionHead eb="IDPC Team 2026" title="The committee behind your degree." sub="Twelve faculty members from Computer Science, Design, Management, Chemistry, Mechanical, Civil, Biosciences, Materials and Humanities." />
   <div class="faculty-grid">{FACULTY.map(([name, dept, slug, site], i) => (
-    <div class="fac reveal" data-d={(i % 4) + 1}><div class="ph"><img src={asset(`assets/img/faculty/${slug}.jpg`)} alt={name} loading="lazy" />
-      <span class="dept">{dept}</span></div>
+    <div class="fac reveal" data-d={(i % 4) + 1}><div class="ph"><img src={asset(`assets/img/faculty/${slug}.jpg`)} alt={name} loading="lazy" /></div>
       <div class="nm">{name}</div><div class="role">{dept}</div>{site && <a class="site" href={site} target="_blank" rel="noopener">Visit website <Icon name="external" stroke={1.7} /></a>}</div>
   ))}</div>
 </div></section>

@@ -42,7 +42,7 @@ export const WHY = [
   { ic: 'heart', t: 'Follow your passion',
     d: 'Build a degree around what genuinely drives you - not a template handed down by a single department. Your curiosity sets the direction.' },
   { ic: 'grid', t: 'Freedom across every department',
-    d: 'Choose electives and even core courses from any department at IIT Bombay - CSE, EE, Mechanical, Mathematics, Humanities, Design, Management and more.' },
+    d: 'Choose your courses from any department at IIT Bombay - Mechanical, Civil, Humanities, Mathematics, Design, Management and more.' },
   { ic: 'user', t: '1-on-1 faculty advisor',
     d: 'A dedicated Faculty Advisor (FacAd) guides you every semester and approves your individual Plan of Study, so freedom never means drift.' },
   { ic: 'route', t: 'An individualised curriculum',
@@ -50,7 +50,7 @@ export const WHY = [
   { ic: 'flask', t: 'Research from your third semester',
     d: 'Work directly with professors on 4-credit Seminars from Sem 3, growing into full 6-credit research Projects in your final year.' },
   { ic: 'globe', t: 'A globally recognised BS',
-    d: 'Graduate with a Bachelor of Science - the global standard for science & engineering at MIT, Stanford and Harvard - with a declared specialisation.' },
+    d: 'Graduate with a four-year Bachelor of Science - the global standard for science & engineering.' },
 ];
 
 // ---- foundation baskets (with real course codes from the structure slides) ----
@@ -123,6 +123,8 @@ export const CONCENTRATIONS: Concentration[] = [
 ];
 
 // ---- IDPC faculty (2026 team) — [name, dept, photo slug, website] ----
+// The Prof. In-Charge (see DEPT) sits outside this list: both the home and People pages
+// give them their own card above the committee grid.
 export type Faculty = [string, string, string, string];
 export const FACULTY: Faculty[] = [
   ['Suyash Awate', 'Computer Science & Engineering', 'suyash-awate', 'https://www.cse.iitb.ac.in/~suyash/'],
@@ -179,12 +181,12 @@ export const PLACEMENT_ROLES: PlacementRole[] = [
 // ---- example / featured seminars (curated multidisciplinary showcase) ----
 export interface FeaturedSeminar { topic: string; who: string; batch: string; hue: string; field: string; }
 export const FEATURED_SEMINARS: FeaturedSeminar[] = [
-  { topic: 'Physics-Informed Neural Networks', who: 'Yuvraj Parekh', batch: '2023', hue: '--hue-eng', field: 'AI × Physics' },
+  { topic: 'Analysis of Efficiency, Accuracy, and Security of Electronic Voting Machine in India', who: 'Divyanshu Gupta', batch: '2023', hue: '--hue-hum', field: 'Social Science' },
   { topic: "Quantum Entanglement and Bell's Inequalities", who: 'Punit Ranawat', batch: '2024', hue: '--hue-eco', field: 'Quantum Physics' },
-  { topic: 'Computational Aspects of Hindustani Classical Music & Raga Recognition', who: 'Rushikesh Shinde', batch: '2023', hue: '--hue-des', field: 'AI × Music' },
+  { topic: 'Computational Aspects of Hindustani Classical Music & Raga Recognition', who: 'Rushikesh Shinde', batch: '2023', hue: '--hue-des', field: 'Music' },
   { topic: 'Archaeology and Other Sciences: A Bidirectional Exchange of Methods', who: 'Jennifer Esbel Mary', batch: '2024', hue: '--hue-hum', field: 'Archaeology × Science' },
   { topic: "Hilbert's Programme, Gödel and the Limits of Formalising Mathematics", who: 'Nidhish Sahni', batch: '2024', hue: '--hue-eco', field: 'Logic & Mathematics' },
-  { topic: 'Game-Theoretic Approaches to Multi-Agent Reinforcement Learning', who: 'Priyansh Jhanwar', batch: '2023', hue: '--hue-eng', field: 'AI × Game Theory' },
+  { topic: 'Game-Theoretic Approaches to Multi-Agent Reinforcement Learning', who: 'Priyansh Jhanwar', batch: '2023', hue: '--hue-eng', field: 'Game Theory × RL' },
   { topic: 'From Potential to Price: How VCs Value Early-Stage Startups', who: 'Kabir Dodai', batch: '2024', hue: '--hue-mgmt', field: 'Finance × Ventures' },
   { topic: 'Role of Cinema in Cultural Representation', who: 'Kusum Rathore', batch: '2024', hue: '--hue-hum', field: 'Media & Culture' },
   { topic: 'Kolmogorov–Arnold Networks: A Literature Review', who: 'Chaitanya Deshkar', batch: '2023', hue: '--hue-eng', field: 'Machine Learning' },
@@ -214,7 +216,7 @@ export const FAQ: [string, string[]][] = [
    ['To keep the degree genuinely multidisciplinary, you can take at most five UG core (compulsory) courses - 30 credits - from any single department.',
     'There is no cap on electives: you can register for as many elective courses from a department as you like.']],
   ['What degree will I receive, and is a BS inferior to a BTech?',
-   ['You graduate with a BS in your chosen specialisation - Engineering Sciences, Natural Sciences, Social Sciences, or Art & Design.',
+   ['You graduate with a four-year BS in your chosen specialisation - Engineering Sciences, Natural Sciences, Social Sciences, or Art & Design.',
     'It is not inferior. The BS is the global standard for science & engineering degrees at top universities (MIT, Stanford, Harvard); BTech is largely an Indian naming convention. For research, global mobility and top PhD programmes, a BS with a declared specialisation is highly advantageous.']],
   ['How do companies view CME for placements and internships?',
    ['For most modern technology, AI and strategy roles, recruiters prioritise your skills, projects and interview performance over the branch name. Core-engineering recruiters weigh the branch a little more.',

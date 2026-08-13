@@ -6,7 +6,7 @@ import PageHero from '~/components/cme/PageHero.astro';
 import { href } from '~/lib/nav';
 import { DEPT } from '~/data/site';
 
-const desc = 'Contact the Centre for Multidisciplinary Education (CME) at IIT Bombay - faculty in-charge, location, and quick links.';
+const desc = 'Contact the Centre for Multidisciplinary Education (CME) at IIT Bombay - Prof. In-Charge (HoD), location, and quick links.';
 ---
 <Base slug="contact" title="Contact" desc={desc}>
 <PageHero
@@ -18,7 +18,7 @@ const desc = 'Contact the Centre for Multidisciplinary Education (CME) at IIT Bo
 
 <section class="section"><div class="container">
   <div class="grid g-2">
-    <div class="contact-card reveal"><div class="ic"><Icon name="user" /></div><div><h4>Faculty in-charge</h4><p>{DEPT.incharge}</p><a href={`mailto:${DEPT.incharge_email}`}>{DEPT.incharge_email}</a></div></div>
+    <div class="contact-card reveal"><div class="ic"><Icon name="user" /></div><div><h4>Prof. In-Charge (HoD)</h4><p>{DEPT.incharge}</p><a href={`mailto:${DEPT.incharge_email}`}>{DEPT.incharge_email}</a></div></div>
     <div class="contact-card reveal" data-d="1"><div class="ic"><Icon name="pin" /></div><div><h4>Where we are</h4><p>Centre for Multidisciplinary Education,<br />IIT Bombay, Powai, Mumbai 400076, India</p></div></div>
     <div class="contact-card reveal"><div class="ic"><Icon name="cap" /></div><div><h4>Prospective students</h4><p>Finishing your first year? Learn how CME works.</p><a href={href('admissions')}>See admissions & eligibility →</a></div></div>
     <div class="contact-card reveal" data-d="1"><div class="ic"><Icon name="globe" /></div><div><h4>The institute</h4><p>An initiative of IIT Bombay.</p><a href="https://www.iitb.ac.in" target="_blank" rel="noopener">iitb.ac.in →</a></div></div>

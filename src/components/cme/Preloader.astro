@@ -1,0 +1,25 @@
+---
+// First-paint curtain: the CME lockup sits centred on a plain field, then the logo
+// flies up into the header brand while the curtain fades. Animated by main.js.
+//
+// It only exists in the DOM as a curtain while <html> carries .is-loading, which the
+// inline script in Base.astro adds on every load — so with JS off, or under
+// reduced-motion, the markup is inert (display:none) and nothing covers the page.
+//
+// The logo is a plain square image: swap public/assets/img/logo.png for the real one
+// and both this screen and the header pick it up. Nothing else needs changing.
+import { asset } from '~/lib/assets';
+---
+<div class="preloader" id="preloader" aria-hidden="true">
+  <div class="pl-bg"></div>
+  <div class="pl-inner">
+    {/* the wrapper carries the entry animation so the logo's own transform is left
+        free for the flight into the header - the two would otherwise fight */}
+    <span class="pl-logo-in"><img class="pl-logo" src={asset('assets/img/logo.png')} alt="" width="512" height="512" /></span>
+    <div class="pl-word">
+      <span>Centre for</span>
+      <span class="grad-text serif-em">Multidisciplinary</span>
+      <span>Education</span>
+    </div>
+  </div>
+</div>
