@@ -6,7 +6,7 @@ import PageHero from '~/components/cme/PageHero.astro';
 import { initials, avatarHue } from '~/lib/text';
 import { STUDENTS } from '~/data/site';
 
-const desc = 'Meet the CME student cohort at IIT Bombay and browse their research seminars — from reinforcement learning and quantum physics to music, finance and archaeology.';
+const desc = 'Meet the CME student cohort at IIT Bombay and browse their research seminars - from reinforcement learning and quantum physics to music, finance and archaeology.';
 
 const batches = [...new Set(STUDENTS.map((s) => s.batch))].sort();
 let idx = 0;
@@ -46,7 +46,7 @@ const stuData = pyJson(entries).replaceAll('<', '\\u003c');
 <PageHero
   eb="Students & Seminars"
   title={'Curiosity, <span class="grad-text serif-em">on the record.</span>'}
-  lead="Meet the CME cohort and browse the research seminars they've presented — a living map of where multidisciplinary freedom actually leads."
+  lead="Meet the CME cohort and browse the research seminars they've presented - a living map of where multidisciplinary freedom actually leads."
   crumb="Students"
 />
 

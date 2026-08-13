@@ -270,7 +270,7 @@ code{font-family:var(--ff-mono);font-size:.85em}
 /* soft warm glow behind the headline */
 .hero::before{content:"";position:absolute;top:-15%;left:-8%;width:60%;height:80%;z-index:0;pointer-events:none;
   background:radial-gradient(circle at 30% 30%,var(--glow),transparent 68%);filter:blur(10px)}
-.hero .container{position:relative;z-index:1;padding-block:clamp(56px,9vw,108px)}
+.hero .container{position:relative;z-index:1;padding-block:clamp(30px,4.5vw,56px) clamp(44px,6.5vw,76px)}
 .hero-badge{
   display:inline-flex;align-items:center;gap:.5rem;font-family:var(--ff-mono);font-size:.74rem;
   font-weight:600;letter-spacing:.05em;text-transform:uppercase;color:var(--ink-2);
@@ -291,8 +291,11 @@ code{font-family:var(--ff-mono);font-size:.85em}
 .hero-layout{display:grid;grid-template-columns:1fr;gap:clamp(30px,5vw,54px);align-items:center}
 .hero-visual{display:flex;justify-content:center}
 @media(min-width:1000px){
-  .hero-layout{grid-template-columns:minmax(0,1fr) auto}
+  .hero-layout{grid-template-columns:minmax(0,1fr) auto;align-items:start}
   .hero-visual{justify-content:flex-end}
+  /* park the cube's centre on the second headline line ("Multidisciplinary"):
+     badge block (~64px) + 1.5 headline lines, less half the cube's tumble box */
+  .hero .rc-stage{margin-top:calc(64px + 1.5*clamp(2.7rem,7.6vw,5.1rem) - 3.05*var(--rc-step))}
 }
 
 /* ---------- decorative 3×3 cube (home hero) ----------
@@ -374,7 +377,7 @@ code{font-family:var(--ff-mono);font-size:.85em}
   background:radial-gradient(circle at 70% 40%,var(--glow),transparent 65%);filter:blur(8px)}
 .page-hero .hero-grid{-webkit-mask-image:radial-gradient(ellipse 90% 90% at 20% 10%,#000 30%,transparent 75%);
           mask-image:radial-gradient(ellipse 90% 90% at 20% 10%,#000 30%,transparent 75%)}
-.page-hero .container{position:relative;z-index:1;padding-block:clamp(40px,6vw,72px)}
+.page-hero .container{position:relative;z-index:1;padding-block:clamp(14px,1.8vw,20px) clamp(30px,4.5vw,52px)}
 .page-hero h1{font-family:var(--ff-display);font-weight:600;letter-spacing:-.02em;line-height:1.04;
   font-size:clamp(2.1rem,5vw,3.4rem);max-width:20ch;margin-top:.3rem}
 .page-hero .lead{max-width:65ch;margin-top:1.1rem}
@@ -388,6 +391,9 @@ code{font-family:var(--ff-mono);font-size:.85em}
    SECTIONS & HEADINGS
    ========================================================================== */
 .section{padding-block:clamp(48px,7vw,88px)}
+/* the first section after a hero sits right under the hero's own bottom padding
+   and its rule — full section padding on top of that reads as a dead band */
+.hero+.section,.page-hero+.section{padding-top:clamp(24px,3.5vw,40px)}
 .section-sm{padding-block:clamp(28px,4vw,44px)}
 .section.alt{background:var(--surface-2)}
 .section-head{margin-bottom:clamp(30px,4vw,48px);max-width:62ch}
@@ -475,9 +481,11 @@ a.card:hover{border-color:var(--accent-line);transform:translateY(-3px);box-shad
 /* ==========================================================================
    STATS
    ========================================================================== */
-.stats{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:var(--line);border:1px solid var(--line);border-radius:var(--r-md);overflow:hidden;box-shadow:var(--shadow-1)}
-@media(max-width:700px){.stats{grid-template-columns:repeat(2,1fr)}}
-.stat{background:var(--surface);padding:1.5rem 1.3rem;transition:background var(--t-med)}
+/* flex, not grid: the cell count follows STATS, so an empty track can never
+   be left over when a stat is added or removed */
+.stats{display:flex;flex-wrap:wrap;gap:1px;background:var(--line);border:1px solid var(--line);border-radius:var(--r-md);overflow:hidden;box-shadow:var(--shadow-1)}
+.stat{flex:1 1 220px;min-width:0;background:var(--surface);padding:1.5rem 1.3rem;transition:background var(--t-med)}
+@media(max-width:700px){.stat{flex-basis:40%}}
 .stat:hover{background:var(--surface-2)}
 .stat .num{font-family:var(--ff-brand);font-size:clamp(1.9rem,4vw,2.7rem);font-weight:700;letter-spacing:-.03em;color:var(--accent);line-height:1;font-variant-numeric:tabular-nums}
 .stat .suf{font-size:.7em}
@@ -553,21 +561,41 @@ a.card:hover{border-color:var(--accent-line);transform:translateY(-3px);box-shad
 .fac .site:hover svg{transform:translate(2px,-2px)}
 
 /* ==========================================================================
-   LOGO WALL
+   LOGO MARQUEE
    ========================================================================== */
-.logo-wall{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:var(--line);border:1px solid var(--line);border-radius:var(--r-md);overflow:hidden;box-shadow:var(--shadow-1)}
-@media(max-width:760px){.logo-wall{grid-template-columns:repeat(3,1fr)}}
-@media(max-width:520px){.logo-wall{grid-template-columns:repeat(2,1fr)}}
-.logo-cell{background:var(--surface);min-height:100px;display:flex;align-items:center;justify-content:center;padding:1.2rem;position:relative;transition:background var(--t-med)}
-.logo-cell:hover{background:var(--surface-2)}
-.logo-cell img{max-height:34px;max-width:80%;width:auto;object-fit:contain;filter:grayscale(1);opacity:.72;transition:filter var(--t-med),opacity var(--t-med)}
-.logo-cell:hover img{filter:grayscale(0);opacity:1}
-[data-theme="dark"] .logo-cell img{filter:grayscale(1) brightness(0) invert(1);opacity:.7}
-[data-theme="dark"] .logo-cell:hover img{filter:grayscale(0) brightness(0) invert(1);opacity:1}
-.logo-cell .rank{position:absolute;top:.6rem;left:.7rem;font-family:var(--ff-mono);font-size:.7rem;color:var(--ink-3)}
-.logo-cell .wordmark{font-family:var(--ff-brand);font-weight:700;font-size:1rem;color:var(--ink-2);transition:color var(--t-med)}
-.logo-cell:hover .wordmark{color:var(--ink)}
-.logo-cell .wordmark .accent{color:var(--accent)}
+/* Each row holds two identical groups, so translating the track by exactly
+   -50% lands the copy where the original started — a seamless loop. The gap
+   lives *inside* each group (plus a trailing padding-right), never between
+   them: a track gap would make each group narrower than its own stride and
+   the wrap would jump by half a gap. */
+.logo-marquee{--mq-gap:clamp(34px,5vw,64px);display:flex;flex-direction:column;gap:clamp(18px,3vw,34px)}
+.marquee-row{position:relative;overflow:hidden;
+  -webkit-mask-image:linear-gradient(90deg,transparent,#000 7%,#000 93%,transparent);
+          mask-image:linear-gradient(90deg,transparent,#000 7%,#000 93%,transparent)}
+.marquee-track{display:flex;gap:0;width:max-content;
+  animation:logo-marquee var(--dur,60s) linear infinite}
+.marquee-row.rev .marquee-track{animation-direction:reverse}
+.marquee-row:hover .marquee-track,.marquee-row:focus-within .marquee-track{animation-play-state:paused}
+.marquee-group{display:flex;gap:var(--mq-gap);padding-right:var(--mq-gap);align-items:center;flex:none}
+@keyframes logo-marquee{to{transform:translateX(-50%)}}
+
+.logo-chip{flex:none;min-width:150px;height:74px;display:flex;align-items:center;justify-content:center}
+.logo-chip img.sq{max-height:52px}
+.logo-chip img{max-height:34px;max-width:100%;width:auto;object-fit:contain;filter:grayscale(1);opacity:.72;transition:filter var(--t-med),opacity var(--t-med),transform var(--t-med)}
+.logo-chip:hover img{filter:grayscale(0);opacity:1;transform:scale(1.06)}
+[data-theme="dark"] .logo-chip img{filter:grayscale(1) brightness(0) invert(1);opacity:.7}
+[data-theme="dark"] .logo-chip:hover img{filter:grayscale(0) brightness(0) invert(1);opacity:1}
+.logo-chip .wordmark{font-family:var(--ff-brand);font-weight:700;font-size:1rem;color:var(--ink-2);white-space:nowrap;transition:color var(--t-med)}
+.logo-chip:hover .wordmark{color:var(--ink)}
+.logo-chip .wordmark .accent{color:var(--accent)}
+
+/* no motion: drop the duplicate group and let the single set wrap, centred */
+@media(prefers-reduced-motion:reduce){
+  .marquee-row{overflow:visible;-webkit-mask-image:none;mask-image:none}
+  .marquee-track{animation:none;width:auto;flex-wrap:wrap;justify-content:center}
+  .marquee-group[aria-hidden="true"]{display:none}
+  .marquee-group{flex-wrap:wrap;justify-content:center;padding-right:0}
+}
 
 /* ==========================================================================
    CURRICULUM TABLE
@@ -580,9 +608,24 @@ table.curric td:first-child,table.curric th:first-child{font-weight:700;backgrou
 table.curric tbody tr{transition:background var(--t-fast)}
 table.curric tbody tr:hover{background:var(--accent-soft)}
 table.curric tr:last-child td{border-bottom:0}
-.cell{display:flex;flex-direction:column;gap:.25rem}
-.cell .cr{font-family:var(--ff-mono);font-size:.68rem;color:var(--ink-3)}
+.td-empty{text-align:center;color:var(--ink-3);opacity:.45}
 .pill{display:inline-block;font-size:.72rem;font-weight:600;padding:.15rem .5rem;border-radius:.3rem;line-height:1.3}
+
+/* pills inside the map are full-width chips that lift and catch a sheen on hover */
+table.curric tbody td>.pill{
+  display:block;position:relative;overflow:hidden;text-align:center;padding:.45rem .5rem;
+  transition:transform var(--t-med),box-shadow var(--t-med),filter var(--t-med)}
+table.curric tbody td>.pill::after{
+  content:"";position:absolute;inset:0;transform:translateX(-130%);pointer-events:none;
+  background:linear-gradient(105deg,transparent 32%,rgba(255,255,255,.6) 50%,transparent 68%);
+  transition:transform .65s var(--ease)}
+table.curric tbody td:hover>.pill{transform:translateY(-3px) scale(1.02);box-shadow:var(--shadow-2);filter:saturate(1.12)}
+table.curric tbody td:hover>.pill::after{transform:translateX(130%)}
+[data-theme="dark"] table.curric tbody td>.pill::after{background:linear-gradient(105deg,transparent 32%,rgba(255,255,255,.14) 50%,transparent 68%)}
+@media(prefers-reduced-motion:reduce){
+  table.curric tbody td:hover>.pill{transform:none}
+  table.curric tbody td>.pill::after{display:none}
+}
 .pill-found{background:var(--accent-soft);color:var(--accent);border:1px solid var(--accent-line)}
 .pill-elec{background:var(--line-soft);color:var(--ink-2);border:1px solid var(--line)}
 .pill-sem{background:#fdece8;color:#b3492c;border:1px solid #f6d3ca}
@@ -673,13 +716,6 @@ table.curric tr:last-child td{border-bottom:0}
   border:1px solid var(--line);border-radius:var(--r-sm);padding:.55rem .85rem;background:var(--surface-2);transition:border-color var(--t-fast),transform var(--t-fast)}
 .mini-badge:hover{border-color:var(--accent-line);transform:translateY(-1px)}
 .mini-badge svg{width:1.1em;height:1.1em;color:var(--accent)}
-.feat-list{display:flex;flex-direction:column;gap:.2rem}
-.feat-list li{display:flex;gap:.9rem;padding:.95rem 0;border-bottom:1px solid var(--line-soft)}
-.feat-list li:last-child{border-bottom:0}
-.feat-list .ic{width:40px;height:40px;flex-shrink:0;border-radius:var(--r-sm);display:grid;place-items:center;background:var(--accent-soft);color:var(--accent);border:1px solid var(--accent-line)}
-.feat-list .ic svg{width:19px;height:19px}
-.feat-list h4{font-size:1rem;margin-bottom:.2rem;letter-spacing:-.01em}
-.feat-list p{font-size:.9rem;color:var(--ink-2)}
 .media-frame{position:relative;border:1px solid var(--line);border-radius:var(--r-md);overflow:hidden;background:var(--surface-2);box-shadow:var(--shadow-1)}
 .media-frame img{width:100%;height:100%;object-fit:cover;transition:transform .6s var(--ease)}
 .media-frame:hover img{transform:scale(1.04)}

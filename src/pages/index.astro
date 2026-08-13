@@ -4,7 +4,7 @@ import Icon from '~/components/cme/Icon.astro';
 import Eyebrow from '~/components/cme/Eyebrow.astro';
 import SectionHead from '~/components/cme/SectionHead.astro';
 import StatStrip from '~/components/cme/StatStrip.astro';
-import LogoWall from '~/components/cme/LogoWall.astro';
+import LogoMarquee from '~/components/cme/LogoMarquee.astro';
 import RubiksCube from '~/components/cme/RubiksCube.astro';
 import { href } from '~/lib/nav';
 import { asset } from '~/lib/assets';
@@ -21,7 +21,7 @@ const desc = 'The Centre for Multidisciplinary Education (CME) at IIT Bombay let
         <div class="reveal"><span class="hero-badge"><Icon name="sparkle" stroke={1.6} /> IIT Bombay</span></div>
         <h1 class="display reveal" data-d="1" style="margin-top:26px">Centre for<br /><span class="grad-text serif-em">Multidisciplinary</span> Education</h1>
         <p class="hero-tagline reveal" data-d="2">Design your own degree.</p>
-        <p class="lead reveal" data-d="3">The Centre for Multidisciplinary Education at IIT Bombay lets you choose your own coursework across <strong>every department</strong> — and graduate with a Bachelor of Science built entirely around your curiosity.</p>
+        <p class="lead reveal" data-d="3">The Centre for Multidisciplinary Education at IIT Bombay lets you choose your own coursework across <strong>every department</strong> - and graduate with a Bachelor of Science built entirely around your curiosity.</p>
         <div class="hero-cta reveal" data-d="3">
           <a class="btn btn-primary btn-lg" href={href('about')}>What is CME? <Icon name="arrow" /></a>
           <a class="btn btn-ghost btn-lg" href={href('curriculum')}>See the structure <Icon name="layers" /></a>
@@ -39,7 +39,7 @@ const desc = 'The Centre for Multidisciplinary Education (CME) at IIT Bombay let
       <Eyebrow text="The idea" />
       <h2 class="section-title" style="margin:14px 0 22px">One institute. Every discipline. <span class="serif-em grad-text">Your path.</span></h2>
       <div class="prose">
-        <p class="lead">CME is an initiative of IIT Bombay for students who refuse to be boxed into a single branch. After your first year, you join CME and gain the freedom to assemble courses — electives <em>and</em> core courses — from any department.</p>
+        <p class="lead">CME is an initiative of IIT Bombay for students who refuse to be boxed into a single branch. After your first year, you join CME and gain the freedom to assemble courses - electives <em>and</em> core courses - from any department.</p>
         <p>A dedicated Faculty Advisor helps you turn that freedom into a coherent, rigorous plan. The result is a degree as individual as you are, inspired by the flexible models of MIT and Harvard.</p>
       </div>
       <div class="badge-row" style="margin-top:26px">
@@ -80,7 +80,7 @@ const desc = 'The Centre for Multidisciplinary Education (CME) at IIT Bombay let
 </div></section>
 
 <section class="section"><div class="container">
-  <SectionHead eb="Foundation" title="Six areas. One well-rounded mind." sub="Before you specialise, you earn six credits in each of six foundation areas — a genuine grounding across the sciences, humanities and design." />
+  <SectionHead eb="Foundation" title="Six areas. One well-rounded mind." sub="Before you specialise, you earn six credits in each of six foundation areas - a genuine grounding across the sciences, humanities and design." />
   <div class="grid g-3">{FOUNDATION.map((b, i) => (
     <div class="card disc reveal" data-d={(i % 3) + 1} style={`--c:var(${b.hue})`}><div class="card-ic"><Icon name={b.ic} /></div><span class="credits">6 CREDITS</span><h3 style="margin-top:8px">{b.name}</h3><p>{b.blurb}</p></div>
   ))}</div>
@@ -88,7 +88,7 @@ const desc = 'The Centre for Multidisciplinary Education (CME) at IIT Bombay let
 </div></section>
 
 <section class="section" style="background:var(--surface-2)"><div class="container">
-  <SectionHead eb="Concentrations" title="Four ways to graduate." sub="Every CME student earns a Bachelor of Science in one of four concentrations — chosen through the electives you love." gradWord="graduate" />
+  <SectionHead eb="Concentrations" title="Four ways to graduate." sub="Every CME student earns a Bachelor of Science in one of four concentrations - chosen through the electives you love." gradWord="graduate" />
   <div class="grid g-2">{CONCENTRATIONS.map((c, i) => (
     <div class="conc reveal" data-d={(i % 2) + 1} style={`--c:var(${c.hue})`}><div class="glow"></div>
       <div class="card-ic" style={`background:color-mix(in srgb,var(${c.hue}) 14%,transparent);color:var(${c.hue})`}><Icon name={c.ic} /></div>
@@ -98,7 +98,7 @@ const desc = 'The Centre for Multidisciplinary Education (CME) at IIT Bombay let
 </div></section>
 
 <section class="section"><div class="container">
-  <SectionHead eb="Student research" title="Seminars that cross every border." sub="From reinforcement learning to raga recognition, from quantum entanglement to archaeology — a glimpse of where CME curiosity goes." gradWord="border" />
+  <SectionHead eb="Student research" title="Seminars that cross every border." sub="From reinforcement learning to raga recognition, from quantum entanglement to archaeology - a glimpse of where CME curiosity goes." gradWord="border" />
   <div class="grid g-3">{FEATURED_SEMINARS.slice(0, 6).map((s, i) => (
     <div class="sem-feat reveal" data-d={(i % 3) + 1} style={`--c:var(${s.hue})`}><div class="barcode" style={`background:linear-gradient(90deg,var(${s.hue}),var(--accent))`}></div>
       <span class="eyebrow">{s.field}</span>
@@ -110,8 +110,8 @@ const desc = 'The Centre for Multidisciplinary Education (CME) at IIT Bombay let
 </div></section>
 
 <section class="section" style="background:var(--surface-2)"><div class="container">
-  <SectionHead eb="Where CME goes" title="From this classroom to those companies." sub="CME students intern where the best of tech, finance and research recruit — on the strength of their skills and portfolios." />
-  <LogoWall companies={COMPANIES.slice(0, 12)} />
+  <SectionHead eb="Where CME goes" title="From this classroom to those companies." sub="CME students intern where the best of tech, finance and research recruit - on the strength of their skills and portfolios." />
+  <LogoMarquee companies={COMPANIES.filter((c) => c.flagship)} rows={1} />
   <div style="margin-top:36px" class="reveal"><a class="btn btn-ghost" href={href('placements')}>See internships & roles <Icon name="arrow" /></a></div>
 </div></section>
 
