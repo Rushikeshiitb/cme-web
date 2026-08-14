@@ -9,8 +9,24 @@
 // The logo is a plain square image: swap public/assets/img/logo.png for the real one
 // and both this screen and the header pick it up. Nothing else needs changing.
 import { asset } from '~/lib/assets';
+import { PRELOADER } from '~/data/site';
+
+// Unveiling mode (PRELOADER.clickToReveal in data/site.ts): the curtain waits for a
+// click instead of timing out, so the site can be revealed on cue. The click target
+// is the curtain itself, so it must be reachable - hence the button role and focus
+// stop, and no aria-hidden, in that mode only.
+const click = PRELOADER.clickToReveal;
 ---
-<div class="preloader" id="preloader" aria-hidden="true">
+<div
+  class="preloader"
+  id="preloader"
+  data-click-to-reveal={click ? '' : undefined}
+  data-hold={String(PRELOADER.holdMs)}
+  role={click ? 'button' : undefined}
+  tabindex={click ? '0' : undefined}
+  aria-label={click ? 'Unveil the site' : undefined}
+  aria-hidden={click ? undefined : 'true'}
+>
   <div class="pl-bg"></div>
   <div class="pl-inner">
     {/* the wrapper carries the entry animation so the logo's own transform is left
@@ -22,4 +38,5 @@ import { asset } from '~/lib/assets';
       <span>Education</span>
     </div>
   </div>
+  {click && <div class="pl-hint">Click to unveil</div>}
 </div>

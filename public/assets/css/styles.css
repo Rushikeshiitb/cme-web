@@ -108,7 +108,7 @@
 
 /* ---------- reset / base ---------- */
 *,*::before,*::after{box-sizing:border-box}
-html{scroll-behavior:smooth;-webkit-text-size-adjust:100%;scroll-padding-top:84px}
+html{scroll-behavior:smooth;-webkit-text-size-adjust:100%;scroll-padding-top:140px}
 body{
   margin:0;font-family:var(--ff);color:var(--ink);background:var(--bg);
   font-size:16px;line-height:1.65;
@@ -183,23 +183,38 @@ code{font-family:var(--ff-mono);font-size:.85em}
    ========================================================================== */
 /* The curtain only exists while <html>.is-loading is set by the inline head script,
    so no-JS and repeat visits never see it - and it can never trap the page. */
-.preloader{position:fixed;inset:0;z-index:120;display:none;place-items:center;pointer-events:none}
+/* --pl-scale sizes the whole lockup. The vw/vh caps only bite once it is scaled up,
+   so at 1 the curtain is exactly its original size and larger values grow it until
+   the viewport, not the multiplier, is the limit. */
+.preloader{--pl-scale:3;position:fixed;inset:0;z-index:120;display:none;place-items:center;pointer-events:none}
 html.is-loading .preloader{display:grid}
+/* unveil mode: the curtain is the button, so it has to take the click */
+.preloader[data-click-to-reveal]{pointer-events:auto;cursor:pointer;outline:none}
 /* the backdrop is its own layer: it fades out while the logo is still flying, so the
    page appears underneath mid-flight instead of after it */
 .pl-bg{position:absolute;inset:0;background:var(--bg);will-change:opacity;transition:opacity .6s ease}
 .preloader.exit .pl-bg{opacity:0}
 /* horizontal lockup: logo on the left, the three-line wordmark beside it */
-.pl-inner{position:relative;display:flex;align-items:center;gap:clamp(16px,2.4vw,28px);padding:24px;text-align:left}
+.pl-inner{position:relative;display:flex;align-items:center;gap:min(calc(28px * var(--pl-scale)),4vw);padding:24px;text-align:left}
 .pl-logo-in{display:block;flex-shrink:0;will-change:opacity,transform}
-.pl-logo{width:clamp(62px,10vw,104px);height:auto;border-radius:22%;display:block;will-change:transform;
+.pl-logo{width:min(calc(104px * var(--pl-scale)),22vw,40vh);height:auto;border-radius:22%;display:block;will-change:transform;
   transform-origin:50% 50%;transition:transform .8s cubic-bezier(.55,.06,.2,1)}
 .pl-word{font-family:var(--ff-display);font-weight:600;line-height:1.05;letter-spacing:-.025em;
-  font-size:clamp(1.3rem,5vw,2.7rem)}
+  font-size:min(calc(2.7rem * var(--pl-scale)),6vw,11vh)}
 .pl-word span{display:block}
 /* inline-block so the clipped gradient sizes to the word, not the line box */
 .pl-word .grad-text{display:inline-block}
 .preloader.exit .pl-word{opacity:0;transform:translateY(-8px);transition:opacity .32s ease,transform .32s ease}
+/* unveil prompt - only appears once main.js is actually listening (.waiting), and
+   leaves the moment the click lands (.going), so it never invites a dead click */
+.pl-hint{position:absolute;left:50%;bottom:clamp(28px,6vh,72px);transform:translateX(-50%);
+  font-family:var(--ff-mono);font-size:.78rem;font-weight:600;letter-spacing:.18em;text-transform:uppercase;
+  color:var(--ink-3);white-space:nowrap;opacity:0;transition:opacity .3s ease}
+.preloader.waiting .pl-hint{opacity:1}
+.preloader.going .pl-hint{opacity:0}
+.js-anim .preloader.waiting:not(.going) .pl-hint{animation:plHint 2.4s ease-in-out .6s infinite}
+@keyframes plHint{0%,100%{opacity:.45}50%{opacity:1}}
+.preloader[data-click-to-reveal]:focus-visible .pl-hint{color:var(--accent)}
 /* the real header logo waits offstage until the flying one lands on it */
 html.is-loading .site-header .brand .mark{opacity:0}
 .js-anim .pl-logo-in,.js-anim .pl-word span{animation:plRise .62s var(--ease) both}
@@ -218,49 +233,51 @@ html.is-loading .site-header .brand .mark{opacity:0}
   border-bottom:1px solid transparent;transition:border-color var(--t-med),box-shadow var(--t-med),background var(--t-med);
 }
 .site-header.scrolled{border-bottom-color:var(--line);box-shadow:var(--shadow-1)}
-.nav{display:flex;align-items:center;justify-content:space-between;gap:1rem;padding-block:.7rem}
-.brand{display:flex;align-items:center;gap:.6rem;flex-shrink:0}
+.nav{display:flex;align-items:center;justify-content:space-between;gap:1rem;padding-block:1.4rem}
+.brand{display:flex;align-items:center;gap:1.2rem;flex-shrink:0}
 /* percentage radius (not 9px) so the loading logo, which lands here scaled down by a
    transform, keeps exactly the same corner curve as it arrives */
-.brand .mark{width:34px;height:34px;border-radius:22%;object-fit:cover;transition:transform var(--t-med)}
+.brand .mark{width:68px;height:68px;border-radius:22%;object-fit:cover;transition:transform var(--t-med)}
 .brand:hover .mark{transform:rotate(-6deg) scale(1.04)}
-.brand span{display:flex;flex-direction:column;font-family:var(--ff-brand);font-weight:700;font-size:1.05rem;line-height:1.05;letter-spacing:-.01em}
-.brand small{font-family:var(--ff-mono);font-weight:600;font-size:.6rem;letter-spacing:.16em;color:var(--ink-3);margin-top:2px}
+.brand span{display:flex;flex-direction:column;font-family:var(--ff-brand);font-weight:700;font-size:2.1rem;line-height:1.05;letter-spacing:-.01em}
+.brand small{font-family:var(--ff-mono);font-weight:600;font-size:1.05rem;letter-spacing:.16em;color:var(--ink-3);margin-top:4px}
 .nav-links{display:flex;align-items:center;gap:.1rem}
+/* the links can't take the brand's full 2x - seven of them at that size overflow the
+   1240px wrap - so they scale to the taller bar and hand over to the menu earlier */
 .nav-links a{
-  position:relative;font-weight:600;font-size:.92rem;padding:.45rem .72rem;border-radius:var(--r-sm);color:var(--ink-2);
+  position:relative;font-weight:600;font-size:1.15rem;padding:.6rem .8rem;border-radius:var(--r-sm);color:var(--ink-2);
   transition:color var(--t-fast),background var(--t-fast);
 }
-.nav-links a::after{content:"";position:absolute;left:.72rem;right:.72rem;bottom:.28rem;height:2px;border-radius:2px;
+.nav-links a::after{content:"";position:absolute;left:.8rem;right:.8rem;bottom:.34rem;height:3px;border-radius:3px;
   background:var(--accent);transform:scaleX(0);transform-origin:left;transition:transform var(--t-med)}
 .nav-links a:hover{color:var(--ink)}
 .nav-links a:hover::after{transform:scaleX(.55)}
 .nav-links a.active{color:var(--accent)}
 .nav-links a.active::after{transform:scaleX(1)}
-.nav-actions{display:flex;align-items:center;gap:.5rem;flex-shrink:0}
+.nav-actions{display:flex;align-items:center;gap:1rem;flex-shrink:0}
 .theme-toggle{
-  width:38px;height:38px;display:grid;place-items:center;border:1px solid var(--line);
+  width:56px;height:56px;display:grid;place-items:center;border:1px solid var(--line);
   border-radius:var(--r-sm);background:transparent;color:var(--ink-2);cursor:pointer;
   transition:color var(--t-fast),border-color var(--t-fast),background var(--t-fast)}
 .theme-toggle:hover{color:var(--accent);border-color:var(--accent);background:var(--accent-soft)}
-.theme-toggle svg{width:18px;height:18px;transition:transform var(--t-med)}
+.theme-toggle svg{width:26px;height:26px;transition:transform var(--t-med)}
 .theme-toggle:hover svg{transform:rotate(18deg)}
 .theme-toggle .sun{display:none}
 [data-theme="dark"] .theme-toggle .sun{display:block}
 [data-theme="dark"] .theme-toggle .moon{display:none}
 .nav-cta{
   display:inline-flex;align-items:center;gap:.35rem;background:var(--btn);color:var(--btn-text);
-  font-weight:700;font-size:.9rem;padding:.5rem .9rem;border-radius:var(--r-sm);transition:background var(--t-fast)}
+  font-weight:700;font-size:1.15rem;padding:.65rem 1.1rem;border-radius:var(--r-sm);transition:background var(--t-fast)}
 .nav-cta:hover{background:var(--btn-hover);color:var(--btn-text)}
 .nav-cta svg{width:1em;height:1em}
-.menu-btn{display:none;width:38px;height:38px;place-items:center;border:1px solid var(--line);
+.menu-btn{display:none;width:56px;height:56px;place-items:center;border:1px solid var(--line);
   border-radius:var(--r-sm);background:transparent;color:var(--ink);cursor:pointer;transition:border-color var(--t-fast)}
 .menu-btn:hover{border-color:var(--accent)}
-.menu-btn svg{width:20px;height:20px}
+.menu-btn svg{width:28px;height:28px}
 
 .mobile-menu{
   display:none;position:fixed;inset:0;top:0;z-index:60;background:var(--bg);
-  padding:5rem var(--pad) 2rem;flex-direction:column;gap:.2rem;overflow-y:auto;
+  padding:8rem var(--pad) 2rem;flex-direction:column;gap:.2rem;overflow-y:auto;
 }
 .mobile-menu.open{display:flex}
 .mobile-menu a{
@@ -281,7 +298,7 @@ html.is-loading .site-header .brand .mark{opacity:0}
 .mobile-menu a span{font-family:var(--ff-mono);font-size:.8rem;color:var(--ink-3);width:1.4rem}
 .mobile-menu a.active{color:var(--accent)}
 
-@media(max-width:960px){
+@media(max-width:1160px){
   .nav-links{display:none}
   .nav-cta{display:none}
   .menu-btn{display:grid}

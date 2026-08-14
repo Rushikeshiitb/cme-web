@@ -2,8 +2,9 @@
 // CME page shell — reproduces the original site's exact <head>, header and footer
 // so the rendered design is byte-for-byte identical to the pre-Astro build.
 // (Deliberately does not use AstroWind's Layout/Tailwind so the look is unchanged.)
-import { DEPT } from '~/data/site';
+import { DEPT, PRELOADER, SITE_LOCK } from '~/data/site';
 import { assetVersion, asset } from '~/lib/assets';
+import { homeHref } from '~/lib/nav';
 import Header from '~/components/cme/Header.astro';
 import Footer from '~/components/cme/Footer.astro';
 import Preloader from '~/components/cme/Preloader.astro';
@@ -21,6 +22,18 @@ const fullTitle = slug === 'index'
   : `${title} · CME, IIT Bombay`;
 const v = assetVersion();
 
+// home-only lock (SITE_LOCK in data/site.ts): inner pages are still built, but they
+// bounce straight back to the home page and ask not to be indexed while it is on.
+const locked = SITE_LOCK.homeOnly;
+const lockedInner = locked && slug !== 'index';
+const home = homeHref();
+// Trailing slashes vary by host (/about vs /about/), so both sides are normalised
+// before the comparison - otherwise the home page could bounce to itself in a loop.
+const lockScript =
+  `(function(){var n=function(p){return p.replace(/\\/+$/,"")||"/"};` +
+  `if(n(location.pathname)!==n(${JSON.stringify(home)}))` +
+  `location.replace(${JSON.stringify(home)}+location.hash);})();`;
+
 const FAVICON =
   'data:image/svg+xml,' +
   "%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 40 40'%3E" +
@@ -34,6 +47,11 @@ const FAVICON =
 <head>
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
+{/* home-only lock: bounce an inner URL home before anything else in the head runs,
+    so a typed or bookmarked address never renders a page that is meant to be off. */}
+{lockedInner && <script is:inline set:html={lockScript} />}
+{lockedInner && <meta name="robots" content="noindex,follow" />}
+{lockedInner && <link rel="canonical" href={homeHref()} />}
 <title>{fullTitle}</title>
 <meta name="description" content={desc} />
 <meta property="og:title" content={fullTitle} />
@@ -44,11 +62,13 @@ const FAVICON =
 <link rel="preload" href={asset('assets/fonts/inter-var.woff2')} as="font" type="font/woff2" crossorigin />
 <link rel="preload" href={asset('assets/fonts/fraunces-var.woff2')} as="font" type="font/woff2" crossorigin />
 <link rel="stylesheet" href={`${asset('assets/css/styles.css')}?v=${v}`} />
+<script is:inline define:vars={{ cmeUnveil: PRELOADER.clickToReveal }}>window.CME_UNVEIL = cmeUnveil;</script>
 <script is:inline>(function(){try{var t=localStorage.getItem('cme-theme');if(t)document.documentElement.setAttribute('data-theme',t);else if(matchMedia('(prefers-color-scheme:dark)').matches)document.documentElement.setAttribute('data-theme','dark');}catch(e){}try{if(!matchMedia('(prefers-reduced-motion:reduce)').matches)document.documentElement.classList.add('js-anim');}catch(e){}
 /* loading curtain: plays on every page load for now, skipped only when motion is
    unwelcome. Set here (not in main.js) so the curtain is up before the page ever
-   paints. The timer is a failsafe - if main.js never runs, the site still appears. */
-try{if(!matchMedia('(prefers-reduced-motion:reduce)').matches){document.documentElement.classList.add('is-loading');setTimeout(function(){document.documentElement.classList.remove('is-loading');},4000);}}catch(e){}})();</script>
+   paints. The timer is a failsafe - if main.js never runs, the site still appears;
+   in unveil mode there is no timer, because the curtain must wait for the click. */
+try{if(!matchMedia('(prefers-reduced-motion:reduce)').matches){document.documentElement.classList.add('is-loading');if(!window.CME_UNVEIL)setTimeout(function(){document.documentElement.classList.remove('is-loading');},4000);}}catch(e){}})();</script>
 </head>
 <body>
 <Preloader />

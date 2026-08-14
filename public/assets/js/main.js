@@ -24,7 +24,11 @@
      rects and transforming the difference (a FLIP move), so it lands exactly on the
      header brand whatever the viewport size. Plays once per session. */
   function runCurtain(curtain, done) {
-    var HOLD = 1000;    /* lockup stays whole this long */
+    /* unveil mode (data-click-to-reveal, set from PRELOADER.clickToReveal in
+       data/site.ts): nothing is on a timer - the lockup holds until someone clicks
+       the curtain, and only then does the logo fly up into the header. */
+    var UNVEIL = curtain.hasAttribute("data-click-to-reveal");
+    var HOLD = parseInt(curtain.getAttribute("data-hold"), 10) || 1000; /* lockup stays whole this long */
     var FLIGHT = 800;   /* matches the .pl-logo transition */
     var LEAD = 180;     /* reveals start this early, so their first (expensive) frame
                            lands before the flight rather than on top of it */
@@ -76,6 +80,25 @@
       setTimeout(finish, FLIGHT);
     }
 
+    if (UNVEIL) {
+      var armed = true;
+      var unveil = function (e) {
+        if (!armed) return;
+        if (e && e.type === "keydown" && e.key !== "Enter" && e.key !== " " && e.key !== "Spacebar") return;
+        if (e) e.preventDefault();
+        armed = false;
+        curtain.classList.add("going");
+        release();                                  /* hand the page back first, */
+        setTimeout(fly, LEAD);                      /* then send the logo up */
+        setTimeout(finish, LEAD + FLIGHT + 1200);   /* backstop, armed only now */
+      };
+      curtain.addEventListener("click", unveil);
+      curtain.addEventListener("keydown", unveil);
+      curtain.classList.add("waiting");
+      if (curtain.focus) curtain.focus({ preventScroll: true });  /* so Enter/Space work straight away */
+      return;
+    }
+
     setTimeout(release, HOLD - LEAD);
     setTimeout(fly, HOLD);
     /* safety net: a stuck transition must never leave the site behind a curtain */
@@ -124,6 +147,23 @@
     var curtain = document.getElementById("preloader");
     if (motion && curtain && root.classList.contains("is-loading")) runCurtain(curtain, initReveals);
     else if (motion) initReveals();
+
+    /* A link pointing at the page you are already on should never reload it - and
+       under the home-only lock every nav link points home, so on the home page that
+       would otherwise mean a full reload (and, in unveil mode, the curtain coming
+       back down) on every click. Scroll to the top instead. Links carrying a #hash
+       are left alone so in-page anchors still work. */
+    document.addEventListener("click", function (e) {
+      if (e.defaultPrevented || e.button || e.metaKey || e.ctrlKey || e.shiftKey || e.altKey) return;
+      var a = e.target && e.target.closest ? e.target.closest("a[href]") : null;
+      if (!a || a.target === "_blank" || a.hasAttribute("download")) return;
+      var url = new URL(a.href, location.href);   /* mailto:/tel: land outside our origin */
+      if (url.origin !== location.origin || url.hash) return;
+      var norm = function (p) { return p.replace(/\/+$/, "") || "/"; };
+      if (norm(url.pathname) !== norm(location.pathname) || url.search !== location.search) return;
+      e.preventDefault();
+      window.scrollTo({ top: 0, behavior: motion ? "smooth" : "auto" });
+    });
 
     /* header: solidify (border + shadow) once the page is scrolled */
     var header = document.querySelector(".site-header");

@@ -1,9 +1,14 @@
 ---
 import Layout from '~/layouts/Layout.astro';
 import { getHomePermalink } from '~/utils/permalinks';
+import { SITE_LOCK } from '~/data/site';
+import { homeHref } from '~/lib/nav';
 
 const title = `Error 404`;
+// home-only lock: an unknown URL goes home too, rather than dead-ending here.
+const lockScript = `location.replace(${JSON.stringify(homeHref())});`;
 ---
+{SITE_LOCK.homeOnly && <script is:inline set:html={lockScript} />}
 
 <Layout metadata={{ title }}>
   <section class="flex items-center h-full p-16">

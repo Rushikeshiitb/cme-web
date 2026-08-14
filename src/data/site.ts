@@ -30,6 +30,26 @@ export const DEPT = {
   tagline: 'Design your own degree.',
 };
 
+// ---- loading curtain ----
+// clickToReveal: the curtain holds the CME lockup on screen indefinitely and only
+// flies the logo into the header once someone clicks (or presses Enter/Space) - the
+// unveiling mode, for showing the site off live. Set it back to false and the curtain
+// plays itself out after `holdMs` as usual. Read by components/cme/Preloader.astro
+// (markup + hint) and layouts/Base.astro (which drops the auto-dismiss failsafe).
+export const PRELOADER = {
+  clickToReveal: true,
+  holdMs: 1000,
+};
+
+// ---- home-only lock ----
+// homeOnly: the site is shown as a single page. Every internal link collapses to the
+// home page (lib/nav.ts) and anyone who reaches an inner URL directly is sent back to
+// it (the guard in layouts/Base.astro). The other pages are still built and one flag
+// flip brings them all back - nothing is deleted.
+export const SITE_LOCK = {
+  homeOnly: true,
+};
+
 // ---- headline stats ----
 export const STATS = [
   { num: 6, suf: '', lbl: 'Foundation areas every student explores' },
